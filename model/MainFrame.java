@@ -1,3 +1,4 @@
+package model;
 import javax.swing.*;//GUI 위한 라이브러리
 import java.awt.*;//Swing보다 더 기본적인 GUI(color, 폰트, 크기 등)
 import java.awt.event.*;//사용자 입력을 처리할 때 사용됨 //이벤트 리스너는 사용자 동작 감지해 반응
