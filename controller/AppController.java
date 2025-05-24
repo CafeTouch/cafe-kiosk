@@ -1,5 +1,19 @@
 package controller;
 
+import screen.MenuFrame;
+import screen.PaymentScreen;
+import screen.KeypadScreen;
+
 public class AppController {
-    //화면 전환 및 흐름 제어
+    public void startApp() {
+        new MenuFrame(this);
+    }
+
+    public void showPaymentScreen() {
+        new PaymentScreen(this); // 결제 화면
+    }
+
+    public void showKeypadScreen() {
+        new KeypadScreen(this);
+    }
 }
