@@ -70,9 +70,9 @@ public class FirstScreen {
 		f.add(cafe);
 		
 		// 파이차트
-		PieChart chart = new PieChart();
-		chart.setBounds(screenWidth - 250, 100, 200, 200);
-		f.add(chart);
+		//PieChart chart = new PieChart();
+		//chart.setBounds(screenWidth - 250, 100, 200, 200);
+		//f.add(chart);
 		
 		
 		f.setVisible(true);
