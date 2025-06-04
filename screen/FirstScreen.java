@@ -2,44 +2,44 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FirstScreen {
-	// µ¥½ºÅ©Å¾ Å©±â ¾ò±â
+	// ë°ìŠ¤í¬íƒ‘ í¬ê¸° ì–»ê¸°
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	int screenWidth = screenSize.width;
 	int screenHeight = screenSize.height;
 
 	FirstScreen(String msg) {
-		// ÇÁ·¹ÀÓ »ı¼º
+		// í”„ë ˆì„ ìƒì„±
 		JFrame f = new JFrame(msg);
 		
-		// ÇÁ·¹ÀÓ »çÀÌÁî¸¦ µ¥½ºÅ©Å¾ Å©±â·Î ¼³Á¤, È­¸é °¡¿îµ¥·Î ¹èÄ¡
+		// í”„ë ˆì„ ì‚¬ì´ì¦ˆë¥¼ ë°ìŠ¤í¬íƒ‘ í¬ê¸°ë¡œ ì„¤ì •, í™”ë©´ ê°€ìš´ë°ë¡œ ë°°ì¹˜
 		f.setSize(screenWidth, screenHeight);
 		f.setLocationRelativeTo(null);
-		f.setLayout(null); // À§Ä¡ Á÷Á¢ ÁöÁ¤ ½Ã ÇÊ¿ä
+		f.setLayout(null); // ìœ„ì¹˜ ì§ì ‘ ì§€ì • ì‹œ í•„ìš”
 		
-		//»ö»ó
+		//ìƒ‰ìƒ
 		Color backGroundColor = new Color(235,244,253);
 		f.getContentPane().setBackground(backGroundColor);
 		
 		
-		// ¹öÆ°----------
+		// ë²„íŠ¼----------
 		
-		// ¹öÆ° »çÀÌÁî
+		// ë²„íŠ¼ ì‚¬ì´ì¦ˆ
 		int BW = screenWidth/2;
 		int BH = screenHeight/6;
 		
-		// ¹öÆ°¿¡ »ğÀÔÇÒ ÀÌ¹ÌÁö
-		ImageIcon hereIcon = new ImageIcon("C:/Users/riwon/Downloads/noun-store-5847545.png");
-		ImageIcon togoIcon = new ImageIcon("C:/Users/riwon/Downloads/noun-coffee-6200565.png");
+		// ë²„íŠ¼ì— ì‚½ì…í•  ì´ë¯¸ì§€
+		ImageIcon hereIcon = new ImageIcon("noun-store.png");
+		ImageIcon togoIcon = new ImageIcon("noun-coffee.png");
 		Image newHere = hereIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		Image newTogo = togoIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedHere = new ImageIcon(newHere);
 		ImageIcon resizedTogo = new ImageIcon(newTogo);
 		
-		JButton here = new JButton("For here", resizedHere);
-		JButton togo = new JButton("To go", resizedTogo);
+		JButton here = new JButton("ë§¤ì¥ ì´ìš©", resizedHere);
+		JButton togo = new JButton("í¬ì¥ í•˜ê¸°", resizedTogo);
 		
-		//¹öÆ° Ä¿½ºÅÍ¸¶ÀÌÂ¡
+		//ë²„íŠ¼ ì»¤ìŠ¤í„°ë§ˆì´ì§•
 		Color buttonColor = new Color(184,216,249);
 		
 		here.setBackground(buttonColor);
@@ -55,21 +55,21 @@ public class FirstScreen {
 		f.add(here);
 		f.add(togo);
 		
-		// ´«¼ÛÀÌ ÀÌ¹ÌÁö »ğÀÔ
-		ImageIcon NSIcon = new ImageIcon("C:/Users/riwon/Downloads/sookmyung_noonsong.png");
+		// ëˆˆì†¡ì´ ì´ë¯¸ì§€ ì‚½ì…
+		ImageIcon NSIcon = new ImageIcon("sookmyung_noonsong.png");
 		Image newNS = NSIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedNS = new ImageIcon(newNS);
 		JLabel lb = new JLabel(resizedNS);
 		lb.setBounds(screenWidth/4,screenHeight/6, BH, BH);
 		f.add(lb);
 		
-		// ´«¼ÛÄ«Æä ±Û¾¾ »ğÀÔ
-		JLabel cafe = new JLabel("Noonsong CAFE");
+		// ëˆˆì†¡ì¹´í˜ ê¸€ì”¨ ì‚½ì…
+		JLabel cafe = new JLabel("ëˆˆì†¡ ì¹´í˜");
 		cafe.setBounds(screenWidth/2 - 100, screenHeight/6, 500, 100);
 		cafe.setFont(new Font("Arial", Font.BOLD, 24));
 		f.add(cafe);
 		
-		// ÆÄÀÌÂ÷Æ®
+		// íŒŒì´ì°¨íŠ¸
 		PieChart chart = new PieChart();
 		chart.setBounds(screenWidth - 250, 100, 200, 200);
 		f.add(chart);
