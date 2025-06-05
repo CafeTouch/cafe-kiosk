@@ -1,5 +1,4 @@
-// 3. UI
-package Module;
+package model;
 
 import javax.swing.*;
 import java.awt.*;
