@@ -1,5 +1,5 @@
 // 1. data structure
-package Module;
+package model;
 
 public class CartItem {
     private String name; // 메뉴 이름
