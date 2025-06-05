@@ -1,5 +1,5 @@
 // 2. data management
-package Module;
+package model;
 import java.util.*;
 
 public class Cart {
