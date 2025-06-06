@@ -109,8 +109,8 @@ public class MainFrame extends JFrame {
         JPanel tastePanel=new JPanel();
         tastePanel.setBackground(Color.WHITE);
         tastePanel.setBorder(BorderFactory.createTitledBorder("맛 선택"));
-        ImageIcon hotIcon=new ImageIcon("../Images/hot.jpg");
-        ImageIcon iceIcon=new ImageIcon("../Images/ice.jpg");
+        ImageIcon hotIcon=new ImageIcon("Images/hot.jpg");
+        ImageIcon iceIcon=new ImageIcon("Images/ice.jpg");
         //이미지 크기 조절
         Image scaledHot = hotIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         Image scaledIce = iceIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
@@ -162,11 +162,11 @@ public class MainFrame extends JFrame {
         JPanel sizePanel=new JPanel();
         sizePanel.setBackground(Color.WHITE);
         sizePanel.setBorder(BorderFactory.createTitledBorder("사이즈 선택"));
-        ImageIcon smallRawIcon = new ImageIcon("../Images/small.jpg");
+        ImageIcon smallRawIcon = new ImageIcon("Images/small.jpg");
         Image smallImg = smallRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon smallIcon = new ImageIcon(smallImg);
 
-        ImageIcon bigRawIcon = new ImageIcon("../Images/big.jpg");
+        ImageIcon bigRawIcon = new ImageIcon("Images/big.jpg");
         Image bigImg = bigRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon bigIcon = new ImageIcon(bigImg);
 
@@ -211,11 +211,11 @@ public class MainFrame extends JFrame {
         dispoPanel.setBorder(BorderFactory.createTitledBorder("일회용품 사용"));
 
 
-        ImageIcon yesRawIcon=new ImageIcon("../Images/yes.jpg");
+        ImageIcon yesRawIcon=new ImageIcon("Images/yes.jpg");
         Image yesImg=yesRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon yesIcon=new ImageIcon(yesImg);
 
-        ImageIcon noRawIcon=new ImageIcon("../Images/no.jpg");
+        ImageIcon noRawIcon=new ImageIcon("Images/no.jpg");
         Image noImg=noRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon noIcon=new ImageIcon(noImg);
 
@@ -254,11 +254,11 @@ public class MainFrame extends JFrame {
         extraPanel.setBackground(Color.WHITE);
         extraPanel.setBorder(BorderFactory.createTitledBorder("옵션 추가(+500원)"));
 
-        ImageIcon shotRawIcon=new ImageIcon("../Images/shot.jpg");
+        ImageIcon shotRawIcon=new ImageIcon("Images/shot.jpg");
         Image shotImg=shotRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon shotIcon=new ImageIcon(shotImg);
 
-        ImageIcon syrupRawIcon=new ImageIcon("../Images/syrup.jpg");
+        ImageIcon syrupRawIcon=new ImageIcon("Images/syrup.jpg");
         Image syrupImg=syrupRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon syrupIcon=new ImageIcon(syrupImg);
         //중복 선택 가능하도록 ChoeckBox 사용
