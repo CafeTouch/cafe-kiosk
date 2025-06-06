@@ -46,9 +46,8 @@ public class CheckPurchase extends JFrame {
         return panel;
     }
 
-    public CheckPurchase(AppController controller, Cart cart) {
+    public CheckPurchase(AppController controller) {
         this.controller = controller;
-        this.cart = cart;
 
         Color backGroundColor = new Color(235, 244, 253);
 
