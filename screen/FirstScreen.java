@@ -36,8 +36,8 @@ public class FirstScreen {
 		int BH = screenHeight/6;
 		
 		// 버튼에 삽입할 이미지
-		ImageIcon hereIcon = new ImageIcon("noun-store.png");
-		ImageIcon togoIcon = new ImageIcon("noun-coffee.png");
+		ImageIcon hereIcon = new ImageIcon("Images/noun-store.png");
+		ImageIcon togoIcon = new ImageIcon("Images/noun-coffee.png");
 		Image newHere = hereIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		Image newTogo = togoIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedHere = new ImageIcon(newHere);
@@ -79,7 +79,7 @@ public class FirstScreen {
 		});
 		// ------
 		// 눈송이 이미지 삽입
-		ImageIcon NSIcon = new ImageIcon("sookmyung_noonsong.png");
+		ImageIcon NSIcon = new ImageIcon("Images/sookmyung_noonsong.png");
 		Image newNS = NSIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedNS = new ImageIcon(newNS);
 		JLabel lb = new JLabel(resizedNS);
