@@ -2,18 +2,23 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import controller.AppController;
 
 public class FirstScreen {
 	// 데스크탑 크기 얻기
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private AppController controller;
 
 	int screenWidth = screenSize.width;
 	int screenHeight = screenSize.height;
 
-	FirstScreen(String msg) {
+	FirstScreen(AppController controller) {
 		// 프레임 생성
-		JFrame f = new JFrame(msg);
-		
+		JFrame f = new JFrame("FirstScreen");
+		this.controller = controller;
+
 		// 프레임 사이즈를 데스크탑 크기로 설정, 화면 가운데로 배치
 		f.setSize(screenWidth, screenHeight);
 		f.setLocationRelativeTo(null);
@@ -56,7 +61,23 @@ public class FirstScreen {
 		
 		f.add(here);
 		f.add(togo);
-		
+
+		// 버튼 클릭시 메뉴판으로 넘어감
+		here.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MenuFrame menu = new MenuFrame(controller);
+				menu.setVisible(true);
+			}
+		});
+		togo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MenuFrame menu = new MenuFrame(controller);
+				menu.setVisible(true);
+			}
+		});
+		// ------
 		// 눈송이 이미지 삽입
 		ImageIcon NSIcon = new ImageIcon("sookmyung_noonsong.png");
 		Image newNS = NSIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
