@@ -3,44 +3,31 @@ package model;
 import java.util.*;
 
 public class Cart {
-    List<CartItem> items = new ArrayList<CartItem>();
+    CartItem item;
+    List<CartItem> items = new ArrayList<CartItem>(); // 원소 = 장바구니 항목
 
-    public void addItem(CartItem item) {
-        items.add(item);
-    }
+    public void addItem(CartItem item) { items.add(item); }
 
     public void deleteItem(CartItem item) {
         items.remove(item);
     }
 
     public void increaseQuantity(CartItem item) {
-        item.setQuantity(item.getQuantity() + 1);
+         item.quantity = item.getQuantity() + 1;
     }
 
     public void decreaseQuantity(CartItem item) {
-        item.setQuantity(item.getQuantity() - 1);
-    }
-
-    public int getTotalPrice(CartItem item) { // 총 금액
-        int totalPrice = 0;
-        for (CartItem item1 : items) {
-            int itemTotal = item.getPrice() * item.getQuantity();
-            if (item.getOptionShot() == 1) { // 샷 추가
-                itemTotal += 500 * item.getOptionShot();
-            }
-            totalPrice += itemTotal;
-        }
-        return totalPrice;
+        item.quantity = item.getQuantity() - 1;
     }
 
     public boolean isEmpty() {
         return items.isEmpty();
-    }
+    } // 장바구니 비어있으면 결제하기 안 넘어가게 함
 
-    public int getTotalCost() {
+    public int getTotalCost() { // 총 금액
         int totalPrice = 0;
         for (CartItem item : items) {
-            totalPrice += item.getPrice();
+            totalPrice += item.getItemPrice();
         }
         return totalPrice;
     }
