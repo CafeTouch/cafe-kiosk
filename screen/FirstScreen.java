@@ -62,21 +62,10 @@ public class FirstScreen {
 		f.add(here);
 		f.add(togo);
 
-		// 버튼 클릭시 메뉴판으로 넘어감
-		here.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MenuFrame menu = new MenuFrame(controller);
-				menu.setVisible(true);
-			}
-		});
-		togo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MenuFrame menu = new MenuFrame(controller);
-				menu.setVisible(true);
-			}
-		});
+		// 버튼 클릭시 MenuFrame으로 넘어감
+		here.addActionListener(e -> controller.startApp());
+		togo.addActionListener(e -> controller.startApp());
+		
 		// ------
 		// 눈송이 이미지 삽입
 		ImageIcon NSIcon = new ImageIcon("Images/sookmyung_noonsong.png");
