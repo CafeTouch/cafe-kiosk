@@ -2,8 +2,6 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import controller.AppController;
 
 public class FirstScreen {
@@ -14,7 +12,7 @@ public class FirstScreen {
 	int screenWidth = screenSize.width;
 	int screenHeight = screenSize.height;
 
-	FirstScreen(AppController controller) {
+	public FirstScreen(AppController controller) {
 		// 프레임 생성
 		JFrame f = new JFrame("FirstScreen");
 		this.controller = controller;
@@ -36,8 +34,8 @@ public class FirstScreen {
 		int BH = screenHeight/6;
 		
 		// 버튼에 삽입할 이미지
-		ImageIcon hereIcon = new ImageIcon("Images/noun-store.png");
-		ImageIcon togoIcon = new ImageIcon("Images/noun-coffee.png");
+		ImageIcon hereIcon = new ImageIcon("/model/Images/noun-store.png");
+		ImageIcon togoIcon = new ImageIcon("/model/Images/noun-coffee.png");
 		Image newHere = hereIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		Image newTogo = togoIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedHere = new ImageIcon(newHere);
@@ -51,8 +49,8 @@ public class FirstScreen {
 		
 		here.setBackground(buttonColor);
 		togo.setBackground(buttonColor);
-		here.setFont(new Font("Arial", Font.BOLD, 20));
-		togo.setFont(new Font("Arial", Font.BOLD, 20));
+		here.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		togo.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		here.setBounds(screenWidth/2-BW/2, (screenHeight/2 - BH*2)*3, 
 			BW, BH);
@@ -65,10 +63,10 @@ public class FirstScreen {
 		// 버튼 클릭시 MenuFrame으로 넘어감
 		here.addActionListener(e -> controller.startApp());
 		togo.addActionListener(e -> controller.startApp());
-		
+
 		// ------
 		// 눈송이 이미지 삽입
-		ImageIcon NSIcon = new ImageIcon("Images/sookmyung_noonsong.png");
+		ImageIcon NSIcon = new ImageIcon("/model/Images/sookmyung_noonsong.png");
 		Image newNS = NSIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedNS = new ImageIcon(newNS);
 		JLabel lb = new JLabel(resizedNS);
@@ -78,7 +76,7 @@ public class FirstScreen {
 		// 눈송카페 글씨 삽입
 		JLabel cafe = new JLabel("눈송 카페");
 		cafe.setBounds(screenWidth/2 - 100, screenHeight/6, 500, 100);
-		cafe.setFont(new Font("Arial", Font.BOLD, 24));
+		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		f.add(cafe);
 		
 		// 파이차트
