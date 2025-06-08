@@ -24,7 +24,7 @@ public class CheckPurchase extends JFrame {
 
             JLabel nameLabel = new JLabel(item.getName());
             JLabel quantityLabel = new JLabel("     수량: " + item.getQuantity());
-            JLabel priceLabel = new JLabel("    가격: " + cart.getTotalPrice(item) + "원");
+            JLabel priceLabel = new JLabel("    가격: " + item.getItemPrice() + "원");
 
             itemPanel.add(nameLabel);
             itemPanel.add(quantityLabel);
@@ -76,5 +76,3 @@ public class CheckPurchase extends JFrame {
         setVisible(true);
     }
 }
-
-
