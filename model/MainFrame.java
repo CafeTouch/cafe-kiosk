@@ -286,6 +286,11 @@ public class MainFrame extends JFrame {
         extraPanel.add(shotBox);
         extraPanel.add(syrupBox);
         optionDialog.add(extraPanel);
+        //옵션 선택 하라고 알려주는 부분 
+        JLabel optionLabel = new JLabel("옵션을 선택하세요");
+        optionLabel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        optionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        optionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         //주문 확인 버튼
         JButton confirmBtn=new JButton("주문 확인");
         confirmBtn.setFont(new Font("맑은 고딕", Font.BOLD, 18));
@@ -320,6 +325,7 @@ public class MainFrame extends JFrame {
 
 
         //dialog에 모든 요소 추가 후 팝업 띄우기
+        optionDialog.add(optionLabel);
         optionDialog.add(nameLabel);
         optionDialog.add(Box.createVerticalStrut(10));
 
@@ -329,6 +335,19 @@ public class MainFrame extends JFrame {
         optionDialog.add(extraPanel);
         optionDialog.add(Box.createVerticalStrut(10));
         optionDialog.add(confirmBtn);
+        //옵션 선택하라고 강조하기 위해 옵션 선택 문구 한 번 깜빡이는 thread 기능 
+         new Thread(() -> {
+            try {
+
+                SwingUtilities.invokeLater(() -> optionLabel.setVisible(false));
+                Thread.sleep(300);
+                SwingUtilities.invokeLater(() -> optionLabel.setVisible(true));
+                Thread.sleep(300);
+
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
         optionDialog.setVisible(true);
     }
