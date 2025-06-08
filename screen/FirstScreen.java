@@ -80,11 +80,94 @@ public class FirstScreen {
 		f.add(cafe);
 		
 		// 파이차트
-		//PieChart chart = new PieChart();
-		//chart.setBounds(screenWidth - 250, 100, 200, 200);
-		//f.add(chart);
-		
+		PieChart chart = new PieChart();
+		chart.setBounds(screenWidth - 250, 100, 200, 200);
+		f.add(chart);
 		
 		f.setVisible(true);
 	}
+	// 파이차트 구현 (음료 판매 수는 임의로 지정)
+	public class PieChart extends JPanel {
+		int ice_americano = 30;
+		int hot_americano = 10;
+		int ice_latte = 15;
+		int hot_latte = 5;
+		int green = 7;
+		int yug = 3;
+		int misu = 2;
+		int iced = 8;
+
+		double ia_angle, ha_angle, il_angle, hl_angle, green_angle, yug_angle, misu_angle,iced_angle;
+
+		// 파이차트 비율 계산
+		public double getRatio(int numWhole, int numPart){
+			double ratio = ((double)numWhole/(double)numPart) * 100;
+			return ratio;
+		}
+
+		// 파이차트 비율별 각도 계산
+		public double getAngle(double ratio){
+			double angle = 3.6 * ratio;
+			return angle;
+		}
+
+		// 각 음료 별 각도
+		public void newAngel() {
+			int total = ice_americano + hot_americano + ice_latte + hot_latte + green + yug + misu + iced;
+
+			ia_angle = getAngle(getRatio(ice_americano, total));
+			ha_angle = getAngle(getRatio(hot_americano, total));
+			il_angle = getAngle(getRatio(ice_latte, total));
+			hl_angle = getAngle(getRatio(hot_latte, total));
+			green_angle = getAngle(getRatio(green, total));
+			yug_angle = getAngle(getRatio(yug, total));
+			misu_angle = getAngle(getRatio(misu, total));
+			iced_angle = getAngle(getRatio(iced, total));
+		}
+
+		// 파이차트 생성 메소드
+		public void paint(Graphics g) {
+			int startAngle = 0;
+
+			g.setColor(new Color(0, 122, 255)); //아이스아메리카노
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) ia_angle);
+			startAngle += ia_angle;
+
+			g.setColor(new Color(0, 60, 133)); //핫아메리카노
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) ha_angle);
+			startAngle += ha_angle;
+
+			g.setColor(new Color(0, 31, 71)); //아이스라떼
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) il_angle);
+			startAngle += il_angle;
+
+			g.setColor(new Color(0, 15, 37)); //핫라떼
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) hl_angle);
+			startAngle += hl_angle;
+
+			g.setColor(new Color(79, 161, 200)); //녹차라떼
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) green_angle);
+			startAngle += green_angle;
+
+			g.setColor(new Color(48, 122, 159)); //요거트
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) yug_angle);
+			startAngle += yug_angle;
+
+			g.setColor(new Color(4, 77, 112)); //미숫가루
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) misu_angle);
+			startAngle += (int) misu_angle;
+
+			g.setColor(new Color(108, 140, 158)); //미숫가루
+			g.fillArc(screenHeight/5, screenHeight/5, 200, 200,
+					startAngle, (int) iced_angle);
+		}
+	}
 }
+
