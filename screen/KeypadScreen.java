@@ -16,28 +16,30 @@ public class KeypadScreen extends JFrame {
         this.controller = controller;
 
         setTitle("전화번호 입력");
-        setSize(500, 600);
+        setSize(800, 1000);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.WHITE);
 
         JLabel guide = new JLabel("<html><center>전화번호를 입력하세요<br>쿠폰을 적립하거나 사용할 수 있어요</center></html>", SwingConstants.CENTER);
-        guide.setFont(new Font("SansSerif", Font.BOLD, 18));
+        guide.setFont(new Font("SansSerif", Font.BOLD, 30));
         guide.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
         add(guide, BorderLayout.NORTH);
 
         display = new JTextField();
         display.setEditable(false);
-        display.setFont(new Font("SansSerif", Font.BOLD, 22));
+        display.setFont(new Font("SansSerif", Font.BOLD, 40));
         display.setHorizontalAlignment(JTextField.CENTER);
         add(display, BorderLayout.CENTER);
 
         JPanel keypadPanel = new JPanel(new GridLayout(4, 3, 10, 10));
-        keypadPanel.setBackground(new Color(220, 240, 255));
-        String[] keys = {"7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "정정", "←"};
+        keypadPanel.setBackground(new Color(200, 220, 255));
+        keypadPanel.setPreferredSize(new Dimension(800, 550));
+        String[] keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "←","정정"};
         for (String key : keys) {
             JButton btn = new JButton(key);
-            btn.setFont(new Font("SansSerif", Font.BOLD, 20));
+            btn.setFont(new Font("SansSerif", Font.BOLD, 45));
+            btn.setPreferredSize(new Dimension(160, 100));
             btn.setBackground(Color.WHITE);
             btn.addActionListener(e -> handleKey(key));
             keypadPanel.add(btn);
@@ -47,15 +49,16 @@ public class KeypadScreen extends JFrame {
         JPanel actionPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         actionPanel.setBackground(Color.WHITE);
 
-        JButton stampBtn = new JButton("❄️적립❄️ ");
+        JButton stampBtn = new JButton("    ❄️적립❄️");
         stampBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
         stampBtn.setBackground(new Color(0, 102, 204));
         stampBtn.setForeground(Color.WHITE);
         stampBtn.addActionListener(e -> handleStamp());
 
-        JButton payBtn = new JButton("결제만 하기");
+        JButton payBtn = new JButton("    ❄️결제만 하기❄️");
         payBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
-        payBtn.setBackground(new Color(204, 255, 255));
+        payBtn.setBackground(new Color(0, 102, 204));
+        payBtn.setForeground(Color.WHITE);
         payBtn.addActionListener(e -> {
             controller.showPaymentScreen();
             dispose();
