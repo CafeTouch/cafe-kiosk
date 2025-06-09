@@ -1,3 +1,5 @@
+package model;
+
 import javax.swing.*;
 import java.awt.*;
 //java swing으로 메뉴 아이템을 GUI로 나타내는 JPanel //각 패널은 이미지, 이름, 가격 보여주며 클릭 가능
