@@ -16,7 +16,7 @@ public class KeypadScreen extends JFrame {
         this.controller = controller;
 
         setTitle("전화번호 입력");
-        setSize(800, 1000);
+        setSize(600, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.WHITE);
@@ -34,7 +34,7 @@ public class KeypadScreen extends JFrame {
 
         JPanel keypadPanel = new JPanel(new GridLayout(4, 3, 10, 10));
         keypadPanel.setBackground(new Color(200, 220, 255));
-        keypadPanel.setPreferredSize(new Dimension(800, 550));
+        keypadPanel.setPreferredSize(new Dimension(600, 500));
         String[] keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "←","정정"};
         for (String key : keys) {
             JButton btn = new JButton(key);
@@ -48,14 +48,16 @@ public class KeypadScreen extends JFrame {
 
         JPanel actionPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         actionPanel.setBackground(Color.WHITE);
+        actionPanel.setPreferredSize(new Dimension(200, 220));
 
-        JButton stampBtn = new JButton("    ❄️적립❄️");
+
+        JButton stampBtn = new JButton(" 적립");
         stampBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
         stampBtn.setBackground(new Color(0, 102, 204));
         stampBtn.setForeground(Color.WHITE);
         stampBtn.addActionListener(e -> handleStamp());
 
-        JButton payBtn = new JButton("    ❄️결제만 하기❄️");
+        JButton payBtn = new JButton("  결제만 하기");
         payBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
         payBtn.setBackground(new Color(0, 102, 204));
         payBtn.setForeground(Color.WHITE);
