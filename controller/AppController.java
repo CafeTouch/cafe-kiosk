@@ -1,9 +1,7 @@
 package controller;
 
-import model.Cart;
-import model.CartItem;
 import screen.*;
-import model.CheckPurchase;
+import model.*;
 
 public class AppController {
     Cart myCart = new Cart();
