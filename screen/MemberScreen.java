@@ -17,7 +17,7 @@ public class MemberScreen extends JFrame {
         this.controller = controller;
 
         setTitle("전화번호 입력");
-        setSize(800, 400);
+        setSize(600, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.WHITE);
