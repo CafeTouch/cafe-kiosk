@@ -66,6 +66,7 @@ public class CheckPurchase extends JFrame {
         Color btnColor = new Color(99, 145, 213);
 
         JButton purchase = new JButton("결제하기");
+        purchase.setFont(new Font("맑은 고딕", Font.BOLD, 24));
         purchase.setBackground(btnColor);
 
         add(purchase, BorderLayout.SOUTH);
