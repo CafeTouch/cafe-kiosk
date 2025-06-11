@@ -1,4 +1,4 @@
-// 단일 항목 관리
+// [1] 단일 item 관리
 package model;
 
 public class CartItem {
