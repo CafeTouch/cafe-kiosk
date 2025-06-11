@@ -23,7 +23,7 @@ public class PaymentOptionScreen extends JFrame {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 100, 100));
         buttonPanel.setBackground(new Color(242, 242, 246));
 
-        JButton cardButton = new JButton("카드");
+        JButton cardButton = new JButton("카드 결제");
         cardButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         cardButton.setBackground(new Color(184, 216, 249));
         cardButton.setForeground(Color.BLACK);
@@ -35,7 +35,7 @@ public class PaymentOptionScreen extends JFrame {
             openReceiptOptionScreen();
         });
 
-        JButton payButton = new JButton("페이");
+        JButton payButton = new JButton("페이 결제");
         payButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         payButton.setBackground(new Color(184, 216, 249));
         payButton.setForeground(Color.BLACK);
