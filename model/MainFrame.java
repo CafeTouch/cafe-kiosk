@@ -1,7 +1,9 @@
 package model;
+import model.MenuItem;
 import javax.swing.*;//GUI 위한 라이브러리
 import java.awt.*;//Swing보다 더 기본적인 GUI(color, 폰트, 크기 등)
 import java.awt.event.*;//사용자 입력을 처리할 때 사용됨 //이벤트 리스너는 사용자 동작 감지해 반응
+import screen.CartScreen;
 
 //MainFrame 클래스는 메인 GUI 프레임 생성
 public class MainFrame extends JFrame {
@@ -60,7 +62,21 @@ public class MainFrame extends JFrame {
         selectedLabel=new JLabel("메뉴를 선택하세요");
         selectedLabel.setHorizontalAlignment(SwingConstants.CENTER);
         selectedLabel.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-        add(selectedLabel, BorderLayout.SOUTH);
+        //add(selectedLabel, BorderLayout.SOUTH);
+        JPanel bottomPanel=new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+        selectedLabel=new JLabel("메뉴를 선택하세요.");
+        selectedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        selectedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        selectedLabel.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+        bottomPanel.add(selectedLabel);
+
+        CartScreen cartScreen=new CartScreen();
+        cartScreen.setPreferredSize(new Dimension(600, 200));
+        bottomPanel.add(cartScreen);
+
+        add(bottomPanel, BorderLayout.SOUTH);
+
 
         setVisible(true);
         Color messageColor=new Color(70, 130, 180);
@@ -88,6 +104,7 @@ public class MainFrame extends JFrame {
     //각 메뉴 버튼에 showOptions(item)이 연결되어있음
     private void showOptions(MenuItem item) {
         //선택된 메뉴에 대한 옵션 설정할 수 있는 JDialog(팝업) 띄움
+
 
 
         //옵션 팝업 창 생성, 위치는 프레임 중앙
