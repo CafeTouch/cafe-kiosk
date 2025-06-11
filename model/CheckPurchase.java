@@ -39,9 +39,9 @@ public class CheckPurchase extends JFrame {
             priceLabel.setBackground(labelColor1);
 
             nameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-            sizeLabel.setFont(new Font("<UNK> <UNK>", Font.BOLD, 20));
-            quantityLabel.setFont(new Font("<UNK> <UNK>", Font.BOLD, 20));
-            priceLabel.setFont(new Font("<UNK>", Font.BOLD, 20));
+            sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+            quantityLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+            priceLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             
 
             //-----라벨을 판넬에 더하기
