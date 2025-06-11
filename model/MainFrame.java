@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() { //JFrame으로 창 만들기
         setTitle("카페 키오스크");
-        setSize(900, 600);
+        setSize(600, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         //카테고리는 COFFEE, NON COFFEE 두개, 버튼 누르면 showMenus로 해당 카테고리 메뉴 표시
@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
 
         //옵션 팝업 창 생성, 위치는 프레임 중앙
         JDialog optionDialog=new JDialog(this, "옵션 선택"+ item.getName(), true);
-        optionDialog.setSize(900, 600);//400, 650
+        optionDialog.setSize(600, 800);//400, 650
         optionDialog.setLayout(new BoxLayout(optionDialog.getContentPane(), BoxLayout.Y_AXIS));
         optionDialog.setLocationRelativeTo(this);
         optionDialog.getContentPane().setBackground(new Color(224, 255, 255));//배경은 민트색
