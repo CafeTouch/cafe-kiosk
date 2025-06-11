@@ -9,4 +9,9 @@ public class CustomerManager {
     public static Customer getOrCreate(String phone) {
         return customerMap.computeIfAbsent(phone, k -> new Customer());
     }
+
+    public static void saveReadable() {
+
+    }
 }
+
