@@ -1,20 +1,19 @@
 // [3] UI 패널 구성
 package model;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-
 
 // 추후 메인프레임 하단 (SOUTH) 영역에 붙여질 예정
 public class CartPanel extends JPanel {
-    public Cart cart; // 생성자
-    private MenuItem item; // 생성자
+    private Cart cart; // 생성자
+    private CartItem item; // 생성자
 
-    //public JPanel mediumPanel;
+    private JLabel singleTotalLabel; // 총 금액
     private JLabel priceLabel; // 단일 품목
     private JLabel quantityLabel; // 수량
-    Font font = new Font("바탕", Font.BOLD, 5);  // 글씨체, 굵기, 크기
-    /*public CartFrame(Cart cart, MenuItem item) {
+
+    /*public CartFrame(Cart cart, CartItem item) {
         this.cart = cart;
         this.item = item;
 
@@ -34,47 +33,56 @@ public class CartPanel extends JPanel {
                                     총 금액: 5000 원        (3) 총 금액
                                     [결제하기]              payment button
      */
+    
+    private JPanel createItemPanel() {
+        JPanel mediumPanel = new JPanel(new GridLayout(2, 1)); // top , bottom panel  품목 데이터
 
-    public CartPanel(Cart cart) {
-        this.cart = cart;
+        //top panel
+        JPanel topPanel = new JPanel(new BorderLayout()); // topPanel: 메뉴명, 수량, 가격
 
-        JPanel mediumPanel = new JPanel();
-        mediumPanel.setLayout(new BoxLayout(mediumPanel, BoxLayout.Y_AXIS));
-        mediumPanel.setBackground(Color.GREEN);
+        JLabel nameLabel = new JLabel(item.getName()); // 1. 메뉴명
+        topPanel.add(nameLabel, BorderLayout.WEST);
 
-        List<MenuItem> items = cart.getItems();
-        for (MenuItem item : items) {
-            mediumPanel.add(createSmallPanel(item));
-        }
-        //bigPanel.setLayout(new BoxLayout(mediumPanel, BoxLayout.Y_AXIS));
-        JScrollPane scrollPane = new JScrollPane(mediumPanel);
-        add(scrollPane, BorderLayout.CENTER);
+        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // 2. 수량 조절
+        //JLabel quantityLabel = new JLabel(String.valueOf(item.getQuantity()));
+        JButton minusButton = decreaseButton(); // 감소 버튼
+        JButton plusButton = increaseButton(); // 증가 버튼
+        quantityPanel.add(new JLabel("수량: "));
+        quantityPanel.add(minusButton); // - 버튼
+        quantityPanel.add(quantityLabel); // 수량 표시
+        quantityPanel.add(plusButton); // + 버튼
+        topPanel.add(quantityPanel, BorderLayout.CENTER);
 
-        JPanel bigPanel = new JPanel();
-        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
-        bigPanel.setBackground(Color.WHITE);
-        bigPanel.setOpaque(true);
+        singleTotalLabel = new JLabel("가격: " + item.getItemPrice() + "원"); // 3. 항목 당 가격
+        topPanel.add(singleTotalLabel, BorderLayout.EAST);
 
-        bigPanel.add(mediumPanel);
-        bigPanel.add(createPricePanel());
-        add(bigPanel, BorderLayout.SOUTH);
+        // bottom panel
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel sizeLabel = new JLabel("사이즈: " + item.getSize());
+        JLabel disposablesLabel = new JLabel("일회용품: " + item.getDisposables());
+        JLabel extraShotLabel = new JLabel("샷 추가 (+500원)" + item.getExtraShot());
+        bottomPanel.add(sizeLabel);
+        bottomPanel.add(extraShotLabel);
+        bottomPanel.add(disposablesLabel);
 
+        mediumPanel.add(topPanel);
+        mediumPanel.add(bottomPanel);
+
+        return mediumPanel;
     }
 
-    // 결제창 버튼 (아직 미완성)
-    public JButton paymentButton() {
-        JButton payButton = new JButton("결제");
-        payButton.addActionListener(e -> {
-            // 결제창으로 넘어가기
-        });
-        return payButton;
+    private JPanel createPricePanel() { //top, bottom
+        JPanel pricePanel = new JPanel(new BorderLayout());
+        JLabel priceLabel = new JLabel("총 금액: " + cart.getTotalCost());
+        JButton payButton = paymentButton();
+
+        pricePanel.add(priceLabel, BorderLayout.NORTH);
+        pricePanel.add(payButton, BorderLayout.SOUTH);
+        return pricePanel;
     }
-    // 수량 감소 버튼
+
     private JButton decreaseButton() {
         JButton minusButton = new JButton("-"); // 감소 버튼
-        minusButton.setPreferredSize(new Dimension(25, 25));
-        minusButton.setFont(font);
-
         minusButton.addActionListener(e -> {
             cart.decreaseQuantity(item);
             if (item.getQuantity() <= 0) {
@@ -84,12 +92,9 @@ public class CartPanel extends JPanel {
         });
         return minusButton;
     }
-    // 수량 증가 버튼
+
     private JButton increaseButton() {
         JButton plusButton = new JButton("+"); // 증가 버튼
-        plusButton.setPreferredSize(new Dimension(25, 25));
-        plusButton.setFont(font);
-
         // 수량 증가 버튼
         plusButton.addActionListener(e-> {
             {
@@ -100,66 +105,14 @@ public class CartPanel extends JPanel {
         return plusButton;
     }
 
-    // item 패널 생성
-    public JPanel createSmallPanel(MenuItem item) { // top + bottom 패널 = medium panel
-        JPanel smallPanel = new JPanel(new GridLayout(2, 1));
-        //top panel
-        JPanel topPanel = new JPanel(new BorderLayout()); // topPanel: 메뉴명, 수량, 가격
-
-        JLabel nameLabel = new JLabel(item.getName()); // 1. 메뉴명
-        topPanel.add(nameLabel, BorderLayout.WEST);
-
-        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // 2. 수량 조절
-        JLabel quantityLabel = new JLabel(String.valueOf(item.getQuantity()));
-        JButton minusButton = decreaseButton(); // 감소 버튼
-        JButton plusButton = increaseButton(); // 증가 버튼
-
-        quantityPanel.add(new JLabel("수량: "));
-        quantityPanel.add(minusButton); // - 버튼
-        quantityPanel.add(quantityLabel); // 수량 표시
-        quantityPanel.add(plusButton); // + 버튼
-        topPanel.add(quantityPanel, BorderLayout.CENTER);
-
-        JLabel singleTotalLabel = new JLabel("가격: " + item.getItemPrice() + "원"); // 3. 항목 당 가격
-        topPanel.add(singleTotalLabel, BorderLayout.EAST);
-
-        // bottom panel
-        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel sizeLabel = new JLabel("사이즈: " + item.getSize());
-        JLabel disposablesLabel;
-        if (item.getDisposables() == 0) {
-            disposablesLabel = new JLabel("일회용품: 선택 안 함" );
-        }
-        else {
-            disposablesLabel = new JLabel("일회용품: 받기 선택");
-        }
-
-        JLabel extraShotLabel = new JLabel("샷 추가 (+500원): " + item.getExtraShot());
-        bottomPanel.add(sizeLabel);
-        bottomPanel.add(extraShotLabel);
-        bottomPanel.add(disposablesLabel);
-
-        smallPanel.add(topPanel);
-        smallPanel.add(bottomPanel);
-
-        return smallPanel;
+    // 결제창 버튼 (아직 미완성)
+    private JButton paymentButton() {
+        JButton payButton = new JButton("결제");
+        payButton.addActionListener(e -> {
+            // 결제창으로 넘어가기
+        });
+        return payButton;
     }
-
-    // 가격 버튼 있는 패널 생성
-    public JPanel createPricePanel() { //top, bottom
-        JPanel pricePanel = new JPanel(new BorderLayout());
-        priceLabel = new JLabel("총 금액: " + cart.getTotalCost() + "원");
-        JButton payButton = paymentButton();
-
-        pricePanel.add(priceLabel, BorderLayout.NORTH);
-        pricePanel.add(payButton, BorderLayout.SOUTH);
-        return pricePanel;
-    }
-
-    // 패널 삭제
-    public void deletePanel(JPanel mediumPanel, JPanel smallPanel) {
-        mediumPanel.remove(smallPanel);
-        mediumPanel.revalidate();
-        mediumPanel.repaint();}
-
+    
 }
+
