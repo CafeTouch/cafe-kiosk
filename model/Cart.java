@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<CartItem> items = new ArrayList<>(); // 원소 = 장바구니 항목
+    private List<MenuItem> items = new ArrayList<>(); // 원소 = 장바구니 항목
 
-    public void addItem(CartItem item) { items.add(item); }
+    public void addItem(MenuItem item) { items.add(item); }
 
-    public List<CartItem> getItems() { return items; }
+    public List<MenuItem> getItems() { return items; }
 
-    public void deleteItem(CartItem item) {
+    public void deleteItem(MenuItem item) {
         items.remove(item);
     }
 
-    public void increaseQuantity(CartItem item) { item.quantity = item.getQuantity() + 1; }
+    public void increaseQuantity(MenuItem item) { item.quantity = item.getQuantity() + 1; }
 
-    public void decreaseQuantity(CartItem item) { item.quantity = item.getQuantity() - 1; }
+    public void decreaseQuantity(MenuItem item) { item.quantity = item.getQuantity() - 1; }
 
     public boolean isEmpty() { return items.isEmpty(); } // 장바구니 비어있으면 결제하기 안 넘어가게 함
 
     public int getTotalCost() { // 총 금액
         int totalPrice = 0;
-        for (CartItem item : items) {
+        for (MenuItem item : items) {
             totalPrice += item.getItemPrice();
         }
         return totalPrice;
