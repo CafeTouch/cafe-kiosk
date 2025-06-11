@@ -3,7 +3,7 @@ package Screen;
 import javax.swing.*;
 import java.awt.*;
 import model.Cart;
-import model.CartItem;
+import model.MenuItem;
 import model.CartPanel;
 
 public class CartScreen extends JPanel {
@@ -13,8 +13,8 @@ public class CartScreen extends JPanel {
 
     public CartScreen() {
         this.cart = new Cart();
-        cart.addItem(new CartItem("아메리카노", 3000, "small", 1, 0, 1));
-        cart.addItem(new CartItem("카페라떼", 3500, "Large", 1, 1, 2));
+        cart.addItem(new MenuItem("아메리카노", 3000, "small", 1, 0, 1));
+        cart.addItem(new MenuItem("카페라떼", 3500, "Large", 1, 1, 2));
 
         this.cartPanel = new CartPanel(this.cart);
 
