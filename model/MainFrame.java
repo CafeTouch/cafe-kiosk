@@ -1,15 +1,15 @@
 package model;
-import model.MenuItem;
 import javax.swing.*;//GUI 위한 라이브러리
 import java.awt.*;//Swing보다 더 기본적인 GUI(color, 폰트, 크기 등)
-import java.awt.event.*;//사용자 입력을 처리할 때 사용됨 //이벤트 리스너는 사용자 동작 감지해 반응
-import screen.CartScreen;
+
 
 //MainFrame 클래스는 메인 GUI 프레임 생성
 public class MainFrame extends JFrame {
     //menuPanel: 메뉴 버튼들이 들어갈 중앙 패널, optionPanel: 옵션 선택 결과 보일 우측 패널.
     private JPanel menuPanel, optionPanel;
     private JLabel selectedLabel;//하단에 메뉴 선택 결과 출력
+    private Cart cart;
+    private CartPanel cartPanel;
 
     public MainFrame() { //JFrame으로 창 만들기
         setTitle("카페 키오스크");
@@ -71,9 +71,11 @@ public class MainFrame extends JFrame {
         selectedLabel.setFont(new Font("맑은 고딕", Font.BOLD, 18));
         bottomPanel.add(selectedLabel);
 
-        CartScreen cartScreen=new CartScreen();
-        cartScreen.setPreferredSize(new Dimension(600, 200));
-        bottomPanel.add(cartScreen);
+        // 장바구니
+        cart = new Cart();
+        cartPanel = new CartPanel(cart);
+        cartPanel.setPreferredSize(new Dimension(600, 200));
+        bottomPanel.add(cartPanel);
 
         add(bottomPanel, BorderLayout.SOUTH);
 
@@ -101,12 +103,16 @@ public class MainFrame extends JFrame {
         menuPanel.revalidate();
         menuPanel.repaint();
     }
+
+    public void refresh() {
+        removeAll();
+        revalidate();
+        repaint();
+    }
+
     //각 메뉴 버튼에 showOptions(item)이 연결되어있음
     private void showOptions(MenuItem item) {
         //선택된 메뉴에 대한 옵션 설정할 수 있는 JDialog(팝업) 띄움
-
-
-
         //옵션 팝업 창 생성, 위치는 프레임 중앙
         JDialog optionDialog=new JDialog(this, "옵션 선택"+ item.getName(), true);
         optionDialog.setSize(600, 800);//400, 650
@@ -191,7 +197,7 @@ public class MainFrame extends JFrame {
         JRadioButton smallBtn = new JRadioButton("Small", smallIcon);
         smallBtn.setBackground(defaultColor);
 
-        JRadioButton bigBtn = new JRadioButton("Big", bigIcon);
+        JRadioButton bigBtn = new JRadioButton("Large", bigIcon);
         bigBtn.setBackground(defaultColor);
 
         smallBtn.setForeground(Color.WHITE);
@@ -323,8 +329,25 @@ public class MainFrame extends JFrame {
                 JOptionPane.showMessageDialog(optionDialog, "모든 필수 항목을 선택해주세요.", "알림", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 0, 99, 1));
+
+            String size = smallBtn.isSelected() ? "Small" : "Large";
+            int hot = hotBtn.isSelected() ? 1 : 0;
+            int extraShot = shotBox.isSelected() ? 1 : 0;
+            int sweetener = syrupBox.isSelected() ? 1 : 0;
+            int disposables = yesDispo.isSelected() ? 1 : 0;
+            int quantity = (int) quantitySpinner.getValue();
+
+            CartItem cartItem = CartItemFactory.create(
+                    item, size, hot, extraShot, sweetener, disposables, quantity
+            );
+
+            cart.addOrUpdateItem(cartItem);  // 장바구니에 넣기
+            cartPanel.refresh();             // UI 갱신
+            optionDialog.dispose();          // 팝업 닫기
+
             //선택된 옵션들 확인하기
-            String taste=hotBtn.isSelected() ?"Hot": "Ice";
+           /* String taste=hotBtn.isSelected() ?"Hot": "Ice";
             String size=smallBtn.isSelected() ?"Small" :"Big";
             String dispo=yesDispo.isSelected() ?"일회용": "매장용";
             StringBuilder extra=new StringBuilder();
@@ -334,7 +357,7 @@ public class MainFrame extends JFrame {
             //상태창에 최종 요약 표시
             String summary=item.getName()+" /맛: "+taste+
                     " /사이즈: "+size+ " /컵: "+dispo+ " /옵션: "+extra.toString().trim();
-            selectedLabel.setText(summary);
+            selectedLabel.setText(summary); */
             //옵션 창 닫기
             optionDialog.dispose();
         });
@@ -368,6 +391,8 @@ public class MainFrame extends JFrame {
 
         optionDialog.setVisible(true);
     }
+
+
     public static void main(String[] args) {
         new MainFrame();
     }
