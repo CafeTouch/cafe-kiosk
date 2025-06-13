@@ -12,7 +12,7 @@ public class CheckPurchase extends JFrame {
     // 모든 컨테이너 통합
     public CheckPurchase(AppController controller, Cart cart) {
         this.controller = controller;
-        this.cart = cart;
+        this.cart = controller.getCart();
 
         Color backGroundColor = new Color(255, 255, 255);
 
