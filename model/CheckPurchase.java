@@ -21,8 +21,10 @@ public class CheckPurchase extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(backGroundColor);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
-        // 결제 확인 패널
+        // 결제 확인 패널------
+        // 스크린 불러옴
         CheckPurchaseScreen screen = new CheckPurchaseScreen(cart);
         JPanel checkPanel = screen.createCartPanel();
         add(checkPanel, BorderLayout.CENTER);
