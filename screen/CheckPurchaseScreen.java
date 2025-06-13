@@ -10,9 +10,7 @@ public class CheckPurchaseScreen extends JPanel {
     private Cart cart;
     private JLabel totalLabel;
 
-    public CheckPurchaseScreen(Cart cart) {
-        this.cart = cart; // 카트 받아옴
-    }
+    public CheckPurchaseScreen(Cart cart) {this.cart = cart;} // 카트 받아옴
 
     // 스크린
     public JPanel createCartPanel() {
@@ -25,9 +23,10 @@ public class CheckPurchaseScreen extends JPanel {
         panel.setBackground(labelColor1);
 
         // 패널에 Cart에 있는 아이템의 이름, 수량, 가격 출력
-        for (CartItem item : cart.items) {
+        for (CartItem item : cart.getItems()) {
             // 컨테이너 1
             JPanel itemPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            itemPanel.setBackground(labelColor1);
 
             JLabel nameLabel = new JLabel(item.getName());
             JLabel sizeLabel = new JLabel("사이즈: " + item.getSize());
@@ -67,8 +66,22 @@ public class CheckPurchaseScreen extends JPanel {
         totalLabel.setBackground(labelColor2);
         totalLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         totalPanel.add(totalLabel);
+        totalPanel.setBackground(labelColor2);
 
         panel.add(totalPanel);
+
+        return panel;
+    }
+
+    // 패널 업데이트
+    public void refreshPanel() {
+        this.removeAll();
+        this.add(createCartPanel());
+        this.revalidate();
+        this.repaint();
+    }
+
+}
 
         return panel;
     }
