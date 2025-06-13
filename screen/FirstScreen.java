@@ -2,15 +2,16 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import controller.AppController;
+import model.*;
 
 public class FirstScreen {
-	// 데스크탑 크기 얻기
-	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private AppController controller;
 
-	int screenWidth = screenSize.width;
-	int screenHeight = screenSize.height;
+	int screenWidth = 600;
+	int screenHeight = 800;
 
 	public FirstScreen(AppController controller) {
 		// 프레임 생성
@@ -34,7 +35,7 @@ public class FirstScreen {
 		int BH = screenHeight/6;
 		
 		// 버튼에 삽입할 이미지
-		ImageIcon hereIcon = new ImageIcon("/model/Images/noun-store.png");
+		ImageIcon hereIcon = new ImageIcon(/*getClass().getImages(*/"Images/noun-store.png");
 		ImageIcon togoIcon = new ImageIcon("/model/Images/noun-coffee.png");
 		Image newHere = hereIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		Image newTogo = togoIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
@@ -63,6 +64,8 @@ public class FirstScreen {
 		// 버튼 클릭시 MenuFrame으로 넘어감
 		here.addActionListener(e -> controller.startApp());
 		togo.addActionListener(e -> controller.startApp());
+		// 버튼 클릭에 따라 일회용품 설정 변경
+		here.addActionListener(e -> controller.startApp());
 
 		// ------
 		// 눈송이 이미지 삽입
@@ -78,14 +81,16 @@ public class FirstScreen {
 		cafe.setBounds(screenWidth/2 - 100, screenHeight/6, 500, 100);
 		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		f.add(cafe);
-		
+
 		// 파이차트
 		PieChart chart = new PieChart();
-		chart.setBounds(screenWidth - 250, 100, 200, 200);
+		chart.setBounds(screenWidth/5, screenHeight/5, 200, 200);
 		f.add(chart);
+		
 		
 		f.setVisible(true);
 	}
+
 	// 파이차트 구현 (음료 판매 수는 임의로 지정)
 	public class PieChart extends JPanel {
 		int ice_americano = 30;
@@ -170,4 +175,3 @@ public class FirstScreen {
 		}
 	}
 }
-
