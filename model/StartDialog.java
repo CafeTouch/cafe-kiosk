@@ -24,5 +24,6 @@ public class StartDialog extends JDialog {
         btnPanel.setBackground(Color.WHITE);
         btnPanel.add(okBtn);
         add(btnPanel, BorderLayout.SOUTH);
+        setLocationRelativeTo(null);
     }
 }
