@@ -1,5 +1,5 @@
 package model;
-/하나의 매뉴 항목 나타냄(각 메뉴의 정보 담는 역할)
+//하나의 매뉴 항목 나타냄(각 메뉴의 정보 담는 역할)
 public class MenuItem {
     private String name;//메뉴 이름
     private int price;//메뉴 가격
