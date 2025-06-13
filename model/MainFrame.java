@@ -3,6 +3,7 @@ package model;
 import javax.swing.*;//GUI 위한 라이브러리
 import java.awt.*;//Swing보다 더 기본적인 GUI(color, 폰트, 크기 등)
 import controller.AppController;
+import model.Cart;
 
 //MainFrame 클래스는 메인 GUI 프레임 생성
 public class MainFrame extends JFrame {
@@ -24,7 +25,7 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
         //카테고리는 COFFEE, NON COFFEE 두개, 버튼 누르면 showMenus로 해당 카테고리 메뉴 표시
         JPanel categoryPanel = new JPanel();
-        categoryPanel.setBackground(new Color(173, 216, 230));
+        categoryPanel.setBackground(new Color(200, 220, 255));//173,216,230
         categoryPanel.setLayout(new GridLayout(2, 1, 10, 10));
         //카테고리 버튼 만들기
         JButton coffeeBtn = new JButton("COFFEE");
@@ -35,8 +36,8 @@ public class MainFrame extends JFrame {
 
 
         Font btnFont = new Font("맑은 고딕", Font.BOLD, 18);
-        Color btnColor = new Color(65, 105, 225);
-        Color borderColor = new Color(70, 130, 180);
+        Color btnColor = new Color(0, 102, 204);//65,105,225
+        Color borderColor = new Color(242, 242, 246);//70,130,180
         for (JButton btn : new JButton[]{coffeeBtn, nonCoffeeBtn}) {
             btn.setBackground(btnColor);
             btn.setFont(btnFont);
@@ -54,13 +55,13 @@ public class MainFrame extends JFrame {
 
         //메뉴 버튼 패널
         menuPanel = new MenuStyle(new GridLayout(2, 4, 10, 10),
-                new Color(240, 255, 255), new Color(70, 130, 180));
+                new Color(200, 220, 255), new Color(0, 102, 204));
         //창 중앙에 배치
         add(menuPanel, BorderLayout.CENTER);
 
         //메뉴 선택했을때 옵션 패널
         optionPanel = new MenuStyle(null,
-                new Color(240, 255, 255), new Color(100, 149, 237));
+                new Color(200, 220, 255), new Color(0, 102, 204));
 
         optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));//세로 나열
         add(optionPanel, BorderLayout.EAST);//오른쪽
@@ -87,7 +88,7 @@ public class MainFrame extends JFrame {
 
 
         setVisible(true);
-        Color messageColor = new Color(70, 130, 180);
+        Color messageColor = new Color(0, 102, 204);
         //시작하면 나타나는 팝업 창
         StartDialog startDialog = new StartDialog(this, messageColor);
         startDialog.setVisible(true);
@@ -125,12 +126,12 @@ public class MainFrame extends JFrame {
         optionDialog.setSize(600, 800);//400, 650
         optionDialog.setLayout(new BoxLayout(optionDialog.getContentPane(), BoxLayout.Y_AXIS));
         optionDialog.setLocationRelativeTo(this);
-        optionDialog.getContentPane().setBackground(new Color(224, 255, 255));//배경은 민트색
+        optionDialog.getContentPane().setBackground(new Color(200, 220, 255));
         //메뉴 이름 라벨 표시 , 현재 선택된 메뉴 이름 큰 글씨로 보여줌
         JLabel nameLabel = new JLabel("메뉴: " + item.getName());
         nameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         nameLabel.setForeground(Color.BLACK);
-        nameLabel.setBackground(new Color(224, 255, 255));
+        nameLabel.setBackground(new Color(200, 220, 255));
         nameLabel.setOpaque(true);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         optionDialog.add(nameLabel);
@@ -139,8 +140,8 @@ public class MainFrame extends JFrame {
         JPanel tastePanel = new JPanel();
         tastePanel.setBackground(Color.WHITE);
         tastePanel.setBorder(BorderFactory.createTitledBorder("맛 선택"));
-        ImageIcon hotIcon = new ImageIcon("Images/hot.jpg");
-        ImageIcon iceIcon = new ImageIcon("Images/ice.jpg");
+        ImageIcon hotIcon = new ImageIcon(getClass().getResource("/model/Images/hot.jpg"));
+        ImageIcon iceIcon = new ImageIcon(getClass().getResource("/model/Images/ice.jpg"));
         //이미지 크기 조절
         Image scaledHot = hotIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         Image scaledIce = iceIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
@@ -157,8 +158,8 @@ public class MainFrame extends JFrame {
 
 // 기본 배경색 지정
         //선택 시 배경색 강조, 선택 여부 따라 배경색 바꾸기
-        Color selectedColor = new Color(173, 216, 230);  // 선택됨
-        Color defaultColor = new Color(65, 105, 225);   // 기본
+        Color selectedColor = new Color(200, 220, 255);  // 선택됨
+        Color defaultColor = new Color(0, 102, 204);   // 기본
 
         hotBtn.setBackground(defaultColor);
         iceBtn.setBackground(defaultColor);
@@ -191,11 +192,11 @@ public class MainFrame extends JFrame {
         JPanel sizePanel = new JPanel();
         sizePanel.setBackground(Color.WHITE);
         sizePanel.setBorder(BorderFactory.createTitledBorder("사이즈 선택"));
-        ImageIcon smallRawIcon = new ImageIcon("Images/small.jpg");
+        ImageIcon smallRawIcon = new ImageIcon(getClass().getResource("/model/Images/small.jpg"));
         Image smallImg = smallRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon smallIcon = new ImageIcon(smallImg);
 
-        ImageIcon bigRawIcon = new ImageIcon("Images/big.jpg");
+        ImageIcon bigRawIcon = new ImageIcon(getClass().getResource("/model/Images/big.jpg"));
         Image bigImg = bigRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon bigIcon = new ImageIcon(bigImg);
 
@@ -240,21 +241,21 @@ public class MainFrame extends JFrame {
         dispoPanel.setBorder(BorderFactory.createTitledBorder("일회용품 사용"));
 
 
-        ImageIcon yesRawIcon = new ImageIcon("Images/yes.jpg");
+        ImageIcon yesRawIcon = new ImageIcon(getClass().getResource("/model/Images/yes.jpg"));
         Image yesImg = yesRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon yesIcon = new ImageIcon(yesImg);
 
-        ImageIcon noRawIcon = new ImageIcon("Images/no.jpg");
+        ImageIcon noRawIcon = new ImageIcon(getClass().getResource("/model/Images/no.jpg"));
         Image noImg = noRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon noIcon = new ImageIcon(noImg);
 
         JRadioButton yesDispo = new JRadioButton("Yes", yesIcon);
-        yesDispo.setBackground(new Color(65, 105, 225));
+        yesDispo.setBackground(new Color(0, 102, 204));
         yesDispo.setHorizontalTextPosition(SwingConstants.RIGHT);
         yesDispo.setIconTextGap(10);
 
         JRadioButton noDispo = new JRadioButton("No", noIcon);
-        noDispo.setBackground(new Color(65, 105, 225));
+        noDispo.setBackground(new Color(0, 102, 204));
         noDispo.setHorizontalTextPosition(SwingConstants.RIGHT);
         noDispo.setIconTextGap(10);
 
@@ -283,21 +284,21 @@ public class MainFrame extends JFrame {
         extraPanel.setBackground(Color.WHITE);
         extraPanel.setBorder(BorderFactory.createTitledBorder("옵션 추가(+500원)"));
 
-        ImageIcon shotRawIcon = new ImageIcon("Images/shot.jpg");
+        ImageIcon shotRawIcon = new ImageIcon(getClass().getResource("/model/Images/shot.jpg"));
         Image shotImg = shotRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon shotIcon = new ImageIcon(shotImg);
 
-        ImageIcon syrupRawIcon = new ImageIcon("Images/syrup.jpg");
+        ImageIcon syrupRawIcon = new ImageIcon(getClass().getResource("/model/Images/syrup.jpg"));
         Image syrupImg = syrupRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon syrupIcon = new ImageIcon(syrupImg);
         //중복 선택 가능하도록 ChoeckBox 사용
         JCheckBox shotBox = new JCheckBox("샷 추가", shotIcon);
-        shotBox.setBackground(new Color(65, 105, 225));
+        shotBox.setBackground(new Color(0, 102, 204));
         shotBox.setHorizontalTextPosition(SwingConstants.RIGHT);
         shotBox.setIconTextGap(10);
 
         JCheckBox syrupBox = new JCheckBox("시럽 추가", syrupIcon);
-        syrupBox.setBackground(new Color(65, 105, 225));
+        syrupBox.setBackground(new Color(0, 102, 204));
         syrupBox.setHorizontalTextPosition(SwingConstants.RIGHT);
         syrupBox.setIconTextGap(10);
 
@@ -320,6 +321,14 @@ public class MainFrame extends JFrame {
         optionLabel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
         optionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         optionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JSpinner quantitySpinner=new JSpinner(new SpinnerNumberModel(1,1, 99, 1));
+        JPanel quantityPanel=new JPanel();
+        quantityPanel.setBackground(Color.WHITE);
+        quantityPanel.setBorder(BorderFactory.createTitledBorder("수량 선택"));
+        quantityPanel.add(quantitySpinner);
+        optionDialog.add(quantityPanel);
+
         //주문 확인 버튼
         JButton confirmBtn = new JButton("주문 확인");
         confirmBtn.setFont(new Font("맑은 고딕", Font.BOLD, 18));
@@ -335,7 +344,7 @@ public class MainFrame extends JFrame {
                 JOptionPane.showMessageDialog(optionDialog, "모든 필수 항목을 선택해주세요.", "알림", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 0, 99, 1));
+            //JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 0, 99, 1));
 
             String size = smallBtn.isSelected() ? "Small" : "Large";
             int hot = hotBtn.isSelected() ? 1 : 0;
@@ -400,6 +409,8 @@ public class MainFrame extends JFrame {
 
 
     /*public static void main(String[] args) {
-        new MainFrame();*/
-    }
+        AppController controller=new AppController();
+        new MainFrame(controller);
+    }*/
+}
 
