@@ -108,7 +108,7 @@ public class PaymentOptionScreen extends JFrame {
         currentOrderNumber = (currentOrderNumber + 1) % 201;
 
         String message = "주문번호: " + orderNumber + "\n" +
-                         paymentMethod + " 결제로 결제되었습니다.\n" +
+                         paymentMethod + "(으)로 결제되었습니다.\n" +
                          receiptOption + "합니다.";
         JOptionPane.showMessageDialog(null, message);
         new PaymentOptionScreen(); // 다시 처음 화면으로
