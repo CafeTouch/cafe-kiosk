@@ -5,18 +5,21 @@ import java.awt.*;
 import model.Cart;
 import model.CartItem;
 import model.CartPanel;
+import controller.AppController;
 
 public class CartScreen extends JPanel {
+    private AppController controller;
     private Cart cart = new Cart();
     private CartPanel cartPanel;
     private JPanel mediumPanel;
 
     public CartScreen() {
+        this.controller=new AppController();
         this.cart = new Cart();
-        cart.addItem(new CartItem("아메리카노", 3000, "small", 1, 0, 1));
-        cart.addItem(new CartItem("카페라떼", 3500, "Large", 1, 1, 2));
+        cart.addItem(new CartItem("아메리카노", 3000, 0, "small", 0, 1, 0,1 ));
+        cart.addItem(new CartItem("카페라떼", 3500, 1, "big", 1, 2, 0, 1));
 
-        this.cartPanel = new CartPanel();
+        this.cartPanel = new CartPanel(controller, cart);
 
         setLayout(new BorderLayout());
         add(cartPanel, BorderLayout.CENTER);
