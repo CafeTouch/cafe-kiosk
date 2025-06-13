@@ -7,7 +7,7 @@ import screen.CheckPurchaseScreen;
 
 public class CheckPurchase extends JFrame {
     private AppController controller;
-    this.cart = controller.getCart();
+    private Cart cart;
 
     // 모든 컨테이너 통합
     public CheckPurchase(AppController controller, Cart cart) {
