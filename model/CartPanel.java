@@ -60,13 +60,14 @@ public class CartPanel extends JPanel {
         bigPanel.setOpaque(true);
     }
 
-    // 결제창 버튼 (아직 미완성)
+    // 결제창 버튼
     public JButton paymentButton() {
         JButton payButton = new JButton("결제");
         payButton.setFont(font);
         payButton.setForeground(Color.WHITE);
         payButton.addActionListener(e -> {
-            // 결제창으로 넘어가기
+            // 결제확인 누르면 결제 확인창으로 넘어감
+            controller.showCheckPurchaseScreen();
         });
         return payButton;
     }
