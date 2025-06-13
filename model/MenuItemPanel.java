@@ -13,7 +13,8 @@ public class MenuItemPanel extends JPanel {
         setCursor(new Cursor(Cursor.HAND_CURSOR));//마우스 올리면 커서 모양 손 모양으로 변경
 
         // 이미지 설정 //이미지 경로받아 ImagdIco 생성
-        ImageIcon icon = new ImageIcon("Images/" + item.getImagePath());
+        //ImageIcon icon = new ImageIcon("/cafe-kiosk-main/model/Images/" + item.getImagePath());
+        ImageIcon icon=new ImageIcon(getClass().getResource("/model/Images/"+item.getImagePath()));
         Image scaledImage = icon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);//크기 설정
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
         imageLabel.setAlignmentX(CENTER_ALIGNMENT);//라벨에 이미지 추가하고 가운데 정렬
