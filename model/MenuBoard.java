@@ -10,7 +10,7 @@ public class MenuBoard {
     static {
         items.add(new MenuItem("아메리카노", 3000, Category.COFFEE, "ice_coffee.jpg"));
         items.add(new MenuItem("카페 모카", 3500, Category.COFFEE, "coffee_moka.jpg"));
-        items.add(new MenuItem("카푸치노", 4000, Category.COFFEE, "capucino.jpg"));
+        items.add(new MenuItem("카푸치노", 4500, Category.COFFEE, "capucino.jpg"));
         items.add(new MenuItem("카페라떼", 4000, Category.COFFEE, "iced_latte.jpg"));
         items.add(new MenuItem("아이스티", 3500, Category.NON_COFFEE, "icedtea.jpg"));
         items.add(new MenuItem("녹차라떼", 4000, Category.NON_COFFEE, "greentea_latte.jpg"));
