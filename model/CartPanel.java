@@ -100,7 +100,8 @@ public class CartPanel extends JPanel {
             {
                 cart.increaseQuantity(item);
                 quantityLabel.setText(String.valueOf(item.getQuantity()));
-                priceLabel.setText("총 금액: " + cart.getTotalCost() + "원");
+                //priceLabel.setText("총 금액: " + cart.getTotalCost() + "원");
+                priceLabel = new JLabel("총 금액: " + cart.getTotalCost() + "원");
             }
 
         });
