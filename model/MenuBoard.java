@@ -15,7 +15,7 @@ public class MenuBoard {
         items.add(new MenuItem("아이스티", 3500, Category.NON_COFFEE, "icedtea.jpg"));
         items.add(new MenuItem("녹차라떼", 4000, Category.NON_COFFEE, "greentea_latte.jpg"));
         items.add(new MenuItem("요거트 스무디", 5000, Category.NON_COFFEE, "yog_smoothie.jpg"));
-        items.add(new MenuItem("미숫가루", 3500, Category.NON_COFFEE, "misu_garu.jpg"));
+        items.add(new MenuItem("미숫가루", 4000, Category.NON_COFFEE, "misu_garu.jpg"));
 
     }
     //메뉴 항목 조회 메서드 - 특정 카테고리에 해당하는 메뉴만 골라서 반환
