@@ -4,13 +4,18 @@ import screen.*;
 import model.*;
 
 public class AppController {
-    Cart myCart = new Cart();
+    private Cart myCart = new Cart();
+
+    // 다른 클래스에서 모두 myCart 쓸 수 있또록
+    public Cart getCart() { return myCart;}
+
+
 
     public void newScreen() { new FirstScreen(this);}
 
-    public void startApp() {
-        new MenuFrame(this);
-    }
+    public void startApp() {new MainFrame(this);}
+
+    //public void showCart() { new CartPanel(this,myCart);}
 
     public void showCheckPurchaseScreen() {
         new CheckPurchase(this, myCart);}
