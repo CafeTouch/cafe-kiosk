@@ -91,6 +91,7 @@ public class MainFrame extends JFrame {
         Color messageColor = new Color(0, 102, 204);
         //시작하면 나타나는 팝업 창
         StartDialog startDialog = new StartDialog(this, messageColor);
+        setLocationRelativeTo(null);
         startDialog.setVisible(true);
         showMenus(Category.COFFEE);//커피 메뉴부터 보여주기
     }
