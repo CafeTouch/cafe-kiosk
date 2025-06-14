@@ -18,12 +18,14 @@ public class CartPanel extends JPanel {
     private JPanel mediumPanel;
     private JLabel totalPriceLabel;// 총 금액
     private JLabel totalQuantityLabel;
+    private AppController controller;
 
     Font font = new Font("맑은 고딕", Font.BOLD, 12);
     
     // CART PANEL 객체 생성
-    public CartPanel(Cart cart) {
+    public CartPanel(AppController controller, Cart cart) {
         this.cart = cart;
+        this.controller= controller;
 
         // mediumPanel 속성
         this.mediumPanel = new JPanel();
@@ -69,7 +71,7 @@ public class CartPanel extends JPanel {
         payButton.setForeground(Color.WHITE);
         // 2. 기능 속성
         payButton.addActionListener(e -> {
-            // 결제창으로 넘어가기
+            controller.showCheckPurchaseScreen();// 결제창으로 넘어가기
         });
         return payButton;
     }
