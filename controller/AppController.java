@@ -26,6 +26,9 @@ public class AppController {
     }
 
     public void showPurchaseDone() { new PaymentScreen(this);}
+
+    // 새 카트를 만들어서 카트 리셋
+    public void resetCart() {this.myCart = new Cart();}
 }
 
 
