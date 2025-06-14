@@ -55,8 +55,16 @@ public class CheckPurchaseScreen extends JPanel {
             JLabel quantityLabel = new JLabel(" | 수량: " + item.getQuantity());
             JLabel priceLabel = new JLabel(" | 가격: " + item.getItemPrice() + "원  ");
             JButton optionBtn = new JButton("+");
+            // 옵션 버튼 생성
+            ImageIcon Icon = new ImageIcon(getClass().getResource("/model/Images/pplus.jpg"));
+            Image newIcon = Icon.getImage().getScaledInstance(30,30, Image.SCALE_FAST);
+            ImageIcon resized = new ImageIcon(newIcon);
+            JButton optionBtn = new JButton(resized);
 
-            //------라벨 커스텀(+버튼 커스텀)
+            optionBtn.setOpaque(false);
+
+
+            //------라벨 커스텀
             nameLabel.setOpaque(true);
             sizeLabel.setOpaque(true);
             quantityLabel.setOpaque(true);
@@ -72,8 +80,7 @@ public class CheckPurchaseScreen extends JPanel {
             sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             quantityLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             priceLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-            optionBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-            optionBtn.setForeground(Color.WHITE);
+
 
             //-----옵션(+)버튼 클릭하면 생성되는 판넬(접었다 폈다) : (컨테이너 1-2)
             // 판넬 생성 및 커스텀
@@ -142,16 +149,24 @@ public class CheckPurchaseScreen extends JPanel {
         scrollPane.setPreferredSize(new Dimension(600, 700));
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // 총 금액 출력 (컨테이너 2)
-        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        // 총 금액, 주문 수량 출력 (컨테이너 2)
+        JPanel totalPanel = new JPanel(new BorderLayout());
         totalPanel.setPreferredSize(new Dimension(600, 100));
 
-        totalLabel = new JLabel("총 합: " + cart.getTotalCost() + "원");
+        totalQuanLabel = new JLabel(" 총 수량: " + cart.getTotalQuantity() + " 잔");
+        totalLabel = new JLabel("주문 금액: " + cart.getTotalCost() + " 원");
+
         totalLabel.setHorizontalAlignment(JLabel.CENTER);
+        totalQuanLabel.setHorizontalAlignment(JLabel.CENTER);
         totalLabel.setOpaque(true);
+        totalQuanLabel.setOpaque(true);
         totalLabel.setBackground(labelColor2);
+        totalQuanLabel.setBackground(labelColor2);
         totalLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        totalPanel.add(totalLabel);
+        totalQuanLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+
+        totalPanel.add(totalQuanLabel, BorderLayout.NORTH);
+        totalPanel.add(totalLabel, BorderLayout.CENTER);
         totalPanel.setBackground(labelColor2);
 
         panel.add(totalPanel);
