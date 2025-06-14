@@ -409,9 +409,6 @@ public class MainFrame extends JFrame {
     }
 
 
-    /*public static void main(String[] args) {
-        AppController controller=new AppController();
-        new MainFrame(controller);
-    }*/
+    
 }
 
