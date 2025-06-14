@@ -58,7 +58,7 @@ public class CheckPurchaseScreen extends JPanel {
 
             // 옵션 버튼 생성
             ImageIcon Icon = new ImageIcon(getClass().getResource("/model/Images/pplus.jpg"));
-            Image newIcon = Icon.getImage().getScaledInstance(30,30, Image.SCALE_FAST);
+            Image newIcon = Icon.getImage().getScaledInstance(40,40, Image.SCALE_FAST);
             ImageIcon resized = new ImageIcon(newIcon);
             JButton optionBtn = new JButton(resized);
 
@@ -106,10 +106,10 @@ public class CheckPurchaseScreen extends JPanel {
             sweetLabel.setBackground(labelColor2);
             dispoLabel.setBackground(labelColor2);
 
-            hotLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
-            shotLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
-            sweetLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
-            dispoLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
+            hotLabel.setFont(new Font("맑은 고딕", Font.BOLD,18));
+            shotLabel.setFont(new Font("맑은 고딕", Font.BOLD,18));
+            sweetLabel.setFont(new Font("맑은 고딕", Font.BOLD,18));
+            dispoLabel.setFont(new Font("맑은 고딕", Font.BOLD,18));
 
 
             // 라벨 판넬에 더하기
