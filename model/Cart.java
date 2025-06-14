@@ -43,7 +43,7 @@ public class Cart {
         return totalQtt;
     }
 
-    
+    // 중복 항목 있으면 수량 누적, 없으면 항목 새로 추가
     public void addOrUpdateItem(CartItem newItem) {
         for (CartItem item : items) {
             if (item.equals(newItem)) {
@@ -53,6 +53,4 @@ public class Cart {
         }
         items.add(newItem);
     }
-
-
 }
