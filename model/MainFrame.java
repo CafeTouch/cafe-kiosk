@@ -80,7 +80,7 @@ public class MainFrame extends JFrame {
 
         // 장바구니
         //cart = new Cart();
-        cartPanel = new CartPanel(controller, cart);
+        cartPanel = new CartPanel( cart);
         cartPanel.setPreferredSize(new Dimension(600, 200));
         bottomPanel.add(cartPanel);
 
