@@ -18,7 +18,7 @@ public class CheckPurchase extends JFrame {
 
         setTitle("결제 확인");
         setSize(600, 800);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBackground(backGroundColor);
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
