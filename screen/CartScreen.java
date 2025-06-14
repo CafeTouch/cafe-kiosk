@@ -19,7 +19,7 @@ public class CartScreen extends JPanel {
         cart.addItem(new CartItem("아메리카노", 3000, 0, "small", 0, 1, 0,1 ));
         cart.addItem(new CartItem("카페라떼", 3500, 1, "big", 1, 2, 0, 1));
 
-        this.cartPanel = new CartPanel(controller, cart);
+        this.cartPanel = new CartPanel( cart);
 
         setLayout(new BorderLayout());
         add(cartPanel, BorderLayout.CENTER);
