@@ -62,6 +62,7 @@ public class CheckPurchaseScreen extends JPanel {
             ImageIcon resized = new ImageIcon(newIcon);
             JButton optionBtn = new JButton(resized);
 
+            optionBtn.setBackground(labelColor1);
             optionBtn.setOpaque(false);
 
 
