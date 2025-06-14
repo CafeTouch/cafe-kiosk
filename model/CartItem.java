@@ -86,5 +86,9 @@ public class CartItem {
     public int hashCode() {
         return Objects.hash(name, size, hot, extraShot, sweetener, disposables);
     }
+    public String optionSummary() {
+        StringBuilder sb = new StringBuilder();
+        return "";
+    }
 
 }
