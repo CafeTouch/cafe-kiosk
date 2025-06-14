@@ -2,8 +2,7 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.net.URL;
+import java.util.Objects;
 
 import controller.AppController;
 import model.*;
@@ -36,8 +35,8 @@ public class FirstScreen {
 		int BH = screenHeight/6;
 		
 		// 버튼에 삽입할 이미지
-		ImageIcon hereIcon = new ImageIcon("/imgs/noun-store.png");
-		ImageIcon togoIcon = new ImageIcon("/imgs/noun-coffee.png");
+		ImageIcon hereIcon = new ImageIcon(getClass().getResource("/model/Images/noun-store.png"));
+		ImageIcon togoIcon = new ImageIcon(getClass().getResource("/model/Images/noun-coffee.png"));
 		Image newHere = hereIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		Image newTogo = togoIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
 		ImageIcon resizedHere = new ImageIcon(newHere);
@@ -65,16 +64,14 @@ public class FirstScreen {
 		// 버튼 클릭시 MenuFrame으로 넘어감
 		here.addActionListener(e -> controller.startApp());
 		togo.addActionListener(e -> controller.startApp());
-		// 버튼 클릭에 따라 일회용품 설정 변경
-		//here.addActionListener(e -> controller.startApp());
 
 		// ------
 		// 눈송이 이미지 삽입
-		ImageIcon NSIcon = new ImageIcon("/imgs/sookmyung_noonsong.png");
-		Image newNS = NSIcon.getImage().getScaledInstance(BH,BH, Image.SCALE_FAST);
+		ImageIcon NSIcon = new ImageIcon(getClass().getResource("/model/Images/sookmyung_noonsong.png"));
+		Image newNS = NSIcon.getImage().getScaledInstance(BH,screenWidth/4, Image.SCALE_FAST);
 		ImageIcon resizedNS = new ImageIcon(newNS);
 		JLabel lb = new JLabel(resizedNS);
-		lb.setBounds(screenWidth/4,screenHeight/6, BH, BH);
+		lb.setBounds(350,screenHeight/6, BH, screenWidth/4);
 		f.add(lb);
 		
 		// 눈송카페 글씨 삽입
