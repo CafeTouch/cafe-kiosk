@@ -192,6 +192,7 @@ public class PaymentOptionScreen extends JFrame {
                    + receiptOption + "합니다.";
         JOptionPane.showMessageDialog(null, msg);
         controller.newScreen(); // 다시 초기 화면으로 이동함
+        controller.resetCart(); // 카트 초기화
     }
 
     // 하단 텍스트가 흘러가는 마르퀴 패널 정의함
