@@ -19,6 +19,8 @@ public class KeypadScreen extends JFrame {
         setSize(600, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        // 가운데 정렬
+        setLocationRelativeTo(null);
         getContentPane().setBackground(Color.WHITE);
 
         JLabel guide = new JLabel("<html><center>전화번호를 입력하세요<br>쿠폰을 적립하거나 사용할 수 있어요</center></html>", SwingConstants.CENTER);
