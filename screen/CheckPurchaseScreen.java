@@ -19,17 +19,17 @@ public class CheckPurchaseScreen extends JPanel {
     // 스크린
     public JPanel createCartPanel() {
         Color labelColor1 = new Color(235, 244, 253);
-        Color labelColor2 = new Color(129, 175, 213);
+        Color labelColor2 = new Color(184,216,249);
 
         // penel: 컨테이너 1,2를 묶는 판넬 컨테이너
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(labelColor1);
+        panel.setBackground(Color.WHITE);
 
         // wholeCartPanel: for문 돌면서 생성된 itemPenel들을 묶는 컨테이너
         JPanel wholeCartPanel = new JPanel();
         wholeCartPanel.setLayout(new BoxLayout(wholeCartPanel, BoxLayout.Y_AXIS));
-        wholeCartPanel.setBackground(labelColor1);
+        wholeCartPanel.setBackground(new Color(242,242,246));
 
         // 패널에 Cart에 있는 아이템의 이름, 수량, 가격 출력
         for (CartItem item : cart.getItems()) {
@@ -40,6 +40,7 @@ public class CheckPurchaseScreen extends JPanel {
             itemPanel.setPreferredSize(new Dimension(580, 70));
             itemPanel.setMinimumSize(new Dimension(580, 70));
             itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
+            // 판넬 디자인
             itemPanel.setBackground(labelColor1);
             itemPanel.setBorder(BorderFactory.createLineBorder(labelColor2, 1, false));
 
