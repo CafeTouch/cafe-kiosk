@@ -92,6 +92,7 @@ public class CartPanel extends JPanel {
                 quantityLabel.setText(String.valueOf(item.getQuantity()));
                 singleTotalLabel.setText(String.valueOf(item.getItemPrice()));
                 totalPriceLabel.setText(String.valueOf(cart.getTotalCost()) + "원");
+                totalQuantityLabel.setText(String.valueOf(cart.getTotalQuantity()) + "잔");
                 refresh();
             }
         });
@@ -124,6 +125,7 @@ public class CartPanel extends JPanel {
             quantityLabel.setText(String.valueOf(item.getQuantity()));
             singleTotalLabel.setText(String.valueOf(item.getItemPrice()));
             totalPriceLabel.setText(String.valueOf(cart.getTotalCost()) + "원");
+            totalQuantityLabel.setText(String.valueOf(cart.getTotalQuantity()) + "잔");
             refresh();
         });
         return minusButton;
@@ -226,7 +228,7 @@ public class CartPanel extends JPanel {
         // 4. 옵션 선택 속성 (사이즈, 일회용품, 샷 추가, 시럽 추가)
         JLabel sizeLabel = new JLabel(" 사이즈: " + item.getSize() + " ");
         sizeLabel.setBackground(Color.WHITE);
-        sizeLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        sizeLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
         sizeLabel.setFont(optionFont);
         sizeLabel.setOpaque(true);
         bottomPanel.add(sizeLabel);
@@ -234,7 +236,7 @@ public class CartPanel extends JPanel {
         if (item.getExtraShot() == 1) {
              extraShotLabel = new JLabel(" 샷 추가 (+500원) ");
              extraShotLabel.setBackground(Color.WHITE);
-             extraShotLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+             extraShotLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
              extraShotLabel.setFont(optionFont);
              bottomPanel.add(extraShotLabel);
              extraShotLabel.setOpaque(true);
@@ -243,7 +245,7 @@ public class CartPanel extends JPanel {
         if (item.getSweetener() == 1) {
             addSweetenerLabel = new JLabel(" 시럽 추가 (+500원) ");
             addSweetenerLabel.setBackground(Color.WHITE);
-            addSweetenerLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            addSweetenerLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
             addSweetenerLabel.setFont(optionFont);
             bottomPanel.add(addSweetenerLabel);
             addSweetenerLabel.setOpaque(true);
@@ -252,7 +254,7 @@ public class CartPanel extends JPanel {
         if (item.getDisposables() == 0) { disposablesLabel = new JLabel(" 일회용품: 받기 안 함 "); }
         else { disposablesLabel = new JLabel(" 일회용품: 받음 "); }
         disposablesLabel.setBackground(Color.WHITE);
-        disposablesLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        disposablesLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
         disposablesLabel.setFont(optionFont);
         bottomPanel.add(disposablesLabel);
         disposablesLabel.setOpaque(true);
@@ -281,6 +283,9 @@ public class CartPanel extends JPanel {
         totalPriceLabel.setOpaque(true);
         totalPriceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        JLabel itemCountTitleLabel = new JLabel("담은 개수");
+        itemCountTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         totalQuantityLabel = new JLabel(cart.getTotalQuantity() + "개");
         totalQuantityLabel.setBackground(new Color(200, 220, 255));
         totalQuantityLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
@@ -298,9 +303,13 @@ public class CartPanel extends JPanel {
         payButton.setPreferredSize(new Dimension(60, 20));
         payButton.setMaximumSize(new Dimension(60, 25));
         payButton.setBackground(new Color(0, 102, 204));
+        payButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
         payButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         pricePanel.add(Box.createVerticalStrut(20));
+        pricePanel.add(itemCountTitleLabel);
+        pricePanel.add(totalQuantityLabel);
+        pricePanel.add(Box.createVerticalStrut(10));
         pricePanel.add(priceTitleLabel);
         pricePanel.add(totalPriceLabel);
         pricePanel.add(Box.createVerticalGlue());
@@ -319,6 +328,7 @@ public class CartPanel extends JPanel {
             mediumPanel.add(itemPanel);
         }
         totalPriceLabel.setText(cart.getTotalCost() + "원");
+        totalQuantityLabel.setText(cart.getTotalQuantity() + "잔");
         mediumPanel.revalidate();  // 레이아웃 갱신
         mediumPanel.repaint();     // UI 다시 그림
     }
