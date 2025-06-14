@@ -95,7 +95,7 @@ public class CheckPurchaseScreen extends JPanel {
             JLabel hotLabel = new JLabel("    "+ hotText);
             String shotText = (item.getExtraShot() == 0) ? " | 샷 추가 |" : " |";
             JLabel shotLabel = new JLabel(" "+ shotText);
-            String sweetText = (item.getSweetener() == 0) ? " 시럽 추가 |" : "";
+            String sweetText = (item.getSweetener() == 0) ? "시럽 추가 |" : "";
             JLabel sweetLabel = new JLabel(" "+ sweetText);
             String dispoText = (item.getDisposables() == 0) ? " 일회용품 사용" : "";
             JLabel dispoLabel = new JLabel(" "+ dispoText);
