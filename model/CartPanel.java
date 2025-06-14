@@ -71,7 +71,7 @@ public class CartPanel extends JPanel {
         payButton.setForeground(Color.WHITE);
         // 2. 기능 속성
         payButton.addActionListener(e -> {
-            // 결제창으로 넘어가기
+            controller.showCheckPurchaseScreen();// 결제창으로 넘어가기
         });
         return payButton;
     }
