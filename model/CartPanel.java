@@ -10,7 +10,7 @@ package model;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-
+import controller.AppController;
 
 // 추후 메인프레임 하단 (SOUTH) 영역에 붙여질 예정
 public class CartPanel extends JPanel {
@@ -18,12 +18,14 @@ public class CartPanel extends JPanel {
     private JPanel mediumPanel;
     private JLabel totalPriceLabel;// 총 금액
     private JLabel totalQuantityLabel;
+    private AppController controller;
 
     Font font = new Font("맑은 고딕", Font.BOLD, 12);
     
-    // CART PANEL 객체 생성
-    public CartPanel(Cart cart) {
+    // CART PANEL 객체 생성 + 외부 컨트롤러에서 받아옴
+    public CartPanel(AppController controller, Cart cart) {
         this.cart = cart;
+        this.controller= controller;
 
         // mediumPanel 속성
         this.mediumPanel = new JPanel();
