@@ -108,6 +108,7 @@ public class KeypadScreen extends JFrame {
                 JOptionPane.showMessageDialog(this, "<html><center> 쿠폰이 발급되었습니다!<br><font color='red'>직원에게 문의해주세요.</font></center></html>");
             }
         }
+        CustomerManager.saveReadable();
 
         controller.showPaymentScreen();  //결제창으로 넘김
         dispose(); //현재 키패드창 닫기
