@@ -331,7 +331,7 @@ public class MainFrame extends JFrame {
         syrupBox.setIconTextGap(10);
 
         shotBox.setPreferredSize(optionBtnSize);
-        //syrupBox.setPreferredSize(optionBtnSize);
+        syrupBox.setPreferredSize(optionBtnSize);
 
         shotBox.setForeground(Color.WHITE);
         syrupBox.setForeground(Color.WHITE);
