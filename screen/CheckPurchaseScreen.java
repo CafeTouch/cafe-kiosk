@@ -1,5 +1,6 @@
 /* 구조 설명 : panel>
-            (scrollPane > wholeCartPanel > itemPanel > 아이템 라벨들) + totalPanel
+            (scrollPane > wholeCartPanel >
+             (wholeItemPanel > ( itemPanel > 아이템 라벨들 ) + optPane ) )+ totalPanel
             penel 끝나고 맨 밑에 버튼
  */
 package screen;
