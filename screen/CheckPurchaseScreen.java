@@ -14,6 +14,7 @@ import java.awt.*;
 public class CheckPurchaseScreen extends JPanel {
     private Cart cart;
     private JLabel totalLabel;
+    private JLabel totalQuanLabel;
 
     public CheckPurchaseScreen(Cart cart) {this.cart = cart;} // 카트 받아옴
 
@@ -54,7 +55,7 @@ public class CheckPurchaseScreen extends JPanel {
             JLabel sizeLabel = new JLabel(" | 사이즈: " + item.getSize());
             JLabel quantityLabel = new JLabel(" | 수량: " + item.getQuantity());
             JLabel priceLabel = new JLabel(" | 가격: " + item.getItemPrice() + "원  ");
-            JButton optionBtn = new JButton("+");
+
             // 옵션 버튼 생성
             ImageIcon Icon = new ImageIcon(getClass().getResource("/model/Images/pplus.jpg"));
             Image newIcon = Icon.getImage().getScaledInstance(30,30, Image.SCALE_FAST);
@@ -74,7 +75,6 @@ public class CheckPurchaseScreen extends JPanel {
             sizeLabel.setBackground(labelColor1);
             quantityLabel.setBackground(labelColor1);
             priceLabel.setBackground(labelColor1);
-            optionBtn.setBackground(new Color(0,102,204));
 
             nameLabel.setFont(new Font("맑은 고딕", Font.BOLD,20));
             sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
