@@ -1,6 +1,6 @@
 /* 구조 설명 : panel>
             (scrollPane > wholeCartPanel > itemPanel > 아이템 라벨들) + totalPanel
-            penel 끝나고 맨 밑에 버튼 
+            penel 끝나고 맨 밑에 버튼
  */
 package screen;
 
@@ -36,17 +36,17 @@ public class CheckPurchaseScreen extends JPanel {
             // itemPenel: 아이템의 이름, 수량, 가격 라벨 담음(컨테이너 1)
             JPanel itemPanel = new JPanel();
             // itemPanel 크기 고정
-            itemPanel.setMaximumSize(new Dimension(580, 50));
-            itemPanel.setPreferredSize(new Dimension(580, 50));
-            itemPanel.setMinimumSize(new Dimension(580, 50));
+            itemPanel.setMaximumSize(new Dimension(580, 70));
+            itemPanel.setPreferredSize(new Dimension(580, 70));
+            itemPanel.setMinimumSize(new Dimension(580, 70));
             itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
             itemPanel.setBackground(labelColor1);
-            itemPanel.setBorder(BorderFactory.createLineBorder(labelColor2, 5, true));
+            itemPanel.setBorder(BorderFactory.createLineBorder(labelColor2, 1, false));
 
             JLabel nameLabel = new JLabel("      "+ item.getName());
             JLabel sizeLabel = new JLabel(" | 사이즈: " + item.getSize());
-            JLabel quantityLabel = new JLabel("| 수량: " + item.getQuantity());
-            JLabel priceLabel = new JLabel("| 가격: " + item.getItemPrice() + "원");
+            JLabel quantityLabel = new JLabel(" | 수량: " + item.getQuantity());
+            JLabel priceLabel = new JLabel(" | 가격: " + item.getItemPrice() + "원");
 
             //------라벨 커스텀
             nameLabel.setOpaque(true);
@@ -74,7 +74,7 @@ public class CheckPurchaseScreen extends JPanel {
             // wholeCartPanel에 itemPanel 더함
             wholeCartPanel.add(itemPanel);
         }
-        
+
         // scrollPane: 상품 수량이 늘어났을 때를 대비해 wholeCartPanel를 스크롤로 묶음
         JScrollPane scrollPane = new JScrollPane(wholeCartPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -87,7 +87,7 @@ public class CheckPurchaseScreen extends JPanel {
         JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         totalPanel.setPreferredSize(new Dimension(600, 100));
 
-        totalLabel = new JLabel("총합: " + cart.getTotalCost() + "원");
+        totalLabel = new JLabel("총 합: " + cart.getTotalCost() + "원");
         totalLabel.setHorizontalAlignment(JLabel.CENTER);
         totalLabel.setOpaque(true);
         totalLabel.setBackground(labelColor2);
