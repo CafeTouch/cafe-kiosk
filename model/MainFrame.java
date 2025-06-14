@@ -80,7 +80,7 @@ public class MainFrame extends JFrame {
 
         // 장바구니
         //cart = new Cart();
-        cartPanel = new CartPanel(controller, cart);
+        cartPanel = new CartPanel( cart);
         cartPanel.setPreferredSize(new Dimension(600, 200));
         bottomPanel.add(cartPanel);
 
@@ -90,9 +90,9 @@ public class MainFrame extends JFrame {
         setVisible(true);
         Color messageColor = new Color(0, 102, 204);
         //시작하면 나타나는 팝업 창
-        StartDialog startDialog = new StartDialog(this, messageColor);
+        //StartDialog startDialog = new StartDialog(this, messageColor);
         setLocationRelativeTo(null);
-        startDialog.setVisible(true);
+        //startDialog.setVisible(true);
         showMenus(Category.COFFEE);//커피 메뉴부터 보여주기
     }
 
@@ -101,7 +101,7 @@ public class MainFrame extends JFrame {
         //기존 상태 모두 초기화 //각 메뉴는 MenuItemPanel로 생성되어 menuPanel에 추가됨
         menuPanel.removeAll();//기존 메뉴 버튼 제거
         optionPanel.removeAll();//옵션 영역도 초기화
-        selectedLabel.setText("메뉴를 선택하세요");//상태 초기화
+        //selectedLabel.setText("메뉴를 선택하세요");//상태 초기화
         //MenuBoard~에서 해당 카테고리의 메뉴 리스트 받음
         for (MenuItem item : MenuBoard.getMenuItems(category)) {
             MenuItemPanel panel = new MenuItemPanel(item, () -> showOptions(item));
@@ -138,6 +138,7 @@ public class MainFrame extends JFrame {
         optionDialog.add(nameLabel);
         optionDialog.add(Box.createVerticalStrut(10));//아래 여백 10픽셀 넣음
         //맛 선택 영역 (hot, ice)
+        String selectedMenuName=item.getName();
         JPanel tastePanel = new JPanel();
         tastePanel.setBackground(Color.WHITE);
         tastePanel.setBorder(BorderFactory.createTitledBorder("맛 선택"));
@@ -156,6 +157,10 @@ public class MainFrame extends JFrame {
         iceBtn.setHorizontalTextPosition(SwingConstants.RIGHT);
         hotBtn.setIconTextGap(10);//텍스트랑 아이콘 간격
         iceBtn.setIconTextGap(10);
+
+        Dimension optionBtnSize=new Dimension(120, 60);
+        hotBtn.setPreferredSize(optionBtnSize);
+        iceBtn.setPreferredSize(optionBtnSize);
 
 // 기본 배경색 지정
         //선택 시 배경색 강조, 선택 여부 따라 배경색 바꾸기
@@ -183,6 +188,22 @@ public class MainFrame extends JFrame {
         tasteGroup.add(hotBtn);
         tasteGroup.add(iceBtn);
 
+
+
+        if(selectedMenuName.equals("요거트 스무디") || selectedMenuName.equals("아이스티")) {
+            hotBtn.setEnabled(false);
+            iceBtn.setSelected(true);
+            iceBtn.setBackground(selectedColor);
+        } else {
+            hotBtn.setEnabled(true);
+            hotBtn.setSelected(false);
+            hotBtn.setBackground(defaultColor);
+            iceBtn.setSelected(false);
+            iceBtn.setBackground(defaultColor);
+            //hotBtn.setSelected(true);
+            //hotBtn.setBackground(selectedColor);
+        }
+
 // 패널에 추가
         tastePanel.add(hotBtn);
         tastePanel.add(iceBtn);
@@ -194,11 +215,11 @@ public class MainFrame extends JFrame {
         sizePanel.setBackground(Color.WHITE);
         sizePanel.setBorder(BorderFactory.createTitledBorder("사이즈 선택"));
         ImageIcon smallRawIcon = new ImageIcon(getClass().getResource("/model/Images/small.jpg"));
-        Image smallImg = smallRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image smallImg = smallRawIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon smallIcon = new ImageIcon(smallImg);
 
         ImageIcon bigRawIcon = new ImageIcon(getClass().getResource("/model/Images/big.jpg"));
-        Image bigImg = bigRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image bigImg = bigRawIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon bigIcon = new ImageIcon(bigImg);
 
 // 버튼 생성
@@ -217,6 +238,9 @@ public class MainFrame extends JFrame {
         bigBtn.setHorizontalTextPosition(SwingConstants.RIGHT);
         smallBtn.setIconTextGap(10);
         bigBtn.setIconTextGap(10);
+
+        bigBtn.setPreferredSize(optionBtnSize);
+        smallBtn.setPreferredSize(optionBtnSize);
 
         ButtonGroup sizeGroup = new ButtonGroup();
         sizeGroup.add(smallBtn);
@@ -243,11 +267,11 @@ public class MainFrame extends JFrame {
 
 
         ImageIcon yesRawIcon = new ImageIcon(getClass().getResource("/model/Images/yes.jpg"));
-        Image yesImg = yesRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image yesImg = yesRawIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon yesIcon = new ImageIcon(yesImg);
 
         ImageIcon noRawIcon = new ImageIcon(getClass().getResource("/model/Images/no.jpg"));
-        Image noImg = noRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image noImg = noRawIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon noIcon = new ImageIcon(noImg);
 
         JRadioButton yesDispo = new JRadioButton("Yes", yesIcon);
@@ -259,6 +283,9 @@ public class MainFrame extends JFrame {
         noDispo.setBackground(new Color(0, 102, 204));
         noDispo.setHorizontalTextPosition(SwingConstants.RIGHT);
         noDispo.setIconTextGap(10);
+
+        yesDispo.setPreferredSize(optionBtnSize);
+        noDispo.setPreferredSize(optionBtnSize);
 
         yesDispo.setForeground(Color.WHITE);
         noDispo.setForeground(Color.WHITE);
@@ -302,6 +329,9 @@ public class MainFrame extends JFrame {
         syrupBox.setBackground(new Color(0, 102, 204));
         syrupBox.setHorizontalTextPosition(SwingConstants.RIGHT);
         syrupBox.setIconTextGap(10);
+
+        shotBox.setPreferredSize(optionBtnSize);
+        //syrupBox.setPreferredSize(optionBtnSize);
 
         shotBox.setForeground(Color.WHITE);
         syrupBox.setForeground(Color.WHITE);
