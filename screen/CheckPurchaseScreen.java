@@ -33,8 +33,13 @@ public class CheckPurchaseScreen extends JPanel {
 
         // 패널에 Cart에 있는 아이템의 이름, 수량, 가격 출력
         for (CartItem item : cart.getItems()) {
-            // itemPenel: 아이템의 이름, 수량, 가격 라벨 담음(컨테이너 1)
+            // itemPenel: 아이템의 이름, 수량, 가격 라벨 담음(컨테이너 1-1)
             JPanel itemPanel = new JPanel();
+            // 옵션패널이랑 기본패널 묶는 컨테이너 (컨테이너 1)
+            JPanel wholeItemPanel = new JPanel();
+            wholeItemPanel.setLayout(new BoxLayout(wholeItemPanel, BoxLayout.Y_AXIS));
+            wholeItemPanel.setBackground(Color.WHITE);
+
             // itemPanel 크기 고정
             itemPanel.setMaximumSize(new Dimension(580, 70));
             itemPanel.setPreferredSize(new Dimension(580, 70));
@@ -44,12 +49,13 @@ public class CheckPurchaseScreen extends JPanel {
             itemPanel.setBackground(labelColor1);
             itemPanel.setBorder(BorderFactory.createLineBorder(labelColor2, 1, false));
 
-            JLabel nameLabel = new JLabel("      "+ item.getName());
+            JLabel nameLabel = new JLabel("    "+ item.getName());
             JLabel sizeLabel = new JLabel(" | 사이즈: " + item.getSize());
             JLabel quantityLabel = new JLabel(" | 수량: " + item.getQuantity());
-            JLabel priceLabel = new JLabel(" | 가격: " + item.getItemPrice() + "원");
+            JLabel priceLabel = new JLabel(" | 가격: " + item.getItemPrice() + "원  ");
+            JButton optionBtn = new JButton("+");
 
-            //------라벨 커스텀
+            //------라벨 커스텀(+버튼 커스텀)
             nameLabel.setOpaque(true);
             sizeLabel.setOpaque(true);
             quantityLabel.setOpaque(true);
@@ -59,21 +65,72 @@ public class CheckPurchaseScreen extends JPanel {
             sizeLabel.setBackground(labelColor1);
             quantityLabel.setBackground(labelColor1);
             priceLabel.setBackground(labelColor1);
+            optionBtn.setBackground(new Color(0,102,204));
 
             nameLabel.setFont(new Font("맑은 고딕", Font.BOLD,20));
             sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             quantityLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             priceLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+            optionBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+            optionBtn.setForeground(Color.WHITE);
+
+            //-----옵션(+)버튼 클릭하면 생성되는 판넬(접었다 폈다) : (컨테이너 1-2)
+            // 판넬 생성 및 커스텀
+            JPanel optPane = new JPanel();
+            optPane.setLayout(new FlowLayout(FlowLayout.LEFT));
+            optPane.setMaximumSize(new Dimension(580, 70));
+            optPane.setBackground(labelColor2);
+
+            // 옵션 별 추가할 라벨들
+            String hotText = (item.getHot() == 0) ? "HOT" : "ICE";
+            JLabel hotLabel = new JLabel("    "+ hotText);
+            String shotText = (item.getExtraShot() == 0) ? " | 샷 추가 |" : " |";
+            JLabel shotLabel = new JLabel(" "+ shotText);
+            String sweetText = (item.getSweetener() == 0) ? " 시럽 추가 |" : "";
+            JLabel sweetLabel = new JLabel(" "+ sweetText);
+            String dispoText = (item.getDisposables() == 0) ? "일회용품 사용" : "";
+            JLabel dispoLabel = new JLabel(" "+ dispoText);
+
+            // 라벨 커스텀
+            hotLabel.setBackground(labelColor2);
+            shotLabel.setBackground(labelColor2);
+            sweetLabel.setBackground(labelColor2);
+            dispoLabel.setBackground(labelColor2);
+
+            hotLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
+            shotLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
+            sweetLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
+            dispoLabel.setFont(new Font("맑은 고딕", Font.BOLD,15));
 
 
-            //-----라벨을 판넬에 더하기
+            // 라벨 판넬에 더하기
+            optPane.add(hotLabel);
+            optPane.add(shotLabel);
+            optPane.add(sweetLabel);
+            optPane.add(dispoLabel);
+
+            // -----다시 기본 판넬
+            // 라벨,버튼을 판넬에 더하기
             itemPanel.add(nameLabel);
             itemPanel.add(sizeLabel);
             itemPanel.add(quantityLabel);
             itemPanel.add(priceLabel);
+            itemPanel.add(optionBtn);
 
-            // wholeCartPanel에 itemPanel 더함
-            wholeCartPanel.add(itemPanel);
+            // 옵션패널 안보이다가 클릭되면 보임
+            optPane.setVisible(false);
+            optionBtn.addActionListener(e -> {
+                optPane.setVisible(!optPane.isVisible());
+                wholeItemPanel.revalidate();
+                wholeItemPanel.repaint();
+            });
+
+            // wholeItemPanel에 itemPanel, optPane 더함
+            wholeItemPanel.add(itemPanel);
+            wholeItemPanel.add(optPane);
+
+            // wholeCartPanel에 wholeItemPanel 더함
+            wholeCartPanel.add(wholeItemPanel);
         }
 
         // scrollPane: 상품 수량이 늘어났을 때를 대비해 wholeCartPanel를 스크롤로 묶음
