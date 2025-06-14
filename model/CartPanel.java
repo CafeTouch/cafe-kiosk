@@ -10,7 +10,7 @@ package model;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import controller.AppController;
+
 
 // 추후 메인프레임 하단 (SOUTH) 영역에 붙여질 예정
 public class CartPanel extends JPanel {
@@ -18,14 +18,12 @@ public class CartPanel extends JPanel {
     private JPanel mediumPanel;
     private JLabel totalPriceLabel;// 총 금액
     private JLabel totalQuantityLabel;
-    private AppController controller;
 
     Font font = new Font("맑은 고딕", Font.BOLD, 12);
     
-    // CART PANEL 객체 생성 + 외부 컨트롤러에서 받아옴
-    public CartPanel(AppController controller, Cart cart) {
+    // CART PANEL 객체 생성
+    public CartPanel(Cart cart) {
         this.cart = cart;
-        this.controller= controller;
 
         // mediumPanel 속성
         this.mediumPanel = new JPanel();
@@ -71,7 +69,7 @@ public class CartPanel extends JPanel {
         payButton.setForeground(Color.WHITE);
         // 2. 기능 속성
         payButton.addActionListener(e -> {
-            controller.showCheckPurchaseScreen();// 결제창으로 넘어가기
+            // 결제창으로 넘어가기
         });
         return payButton;
     }
@@ -276,47 +274,68 @@ public class CartPanel extends JPanel {
 
         return smallPanel;
     }
+    public JPanel createPricePanel() {
+        totalPriceLabel = new JLabel(cart.getTotalCost() + "원", SwingConstants.CENTER);
+        totalQuantityLabel = new JLabel(cart.getTotalQuantity() + "개", SwingConstants.CENTER);
 
-    // 가격 버튼 있는 패널 생성
-    public JPanel createPricePanel() { //top, bottom
-        totalPriceLabel = new JLabel(cart.getTotalCost() + "원");
-        totalPriceLabel.setBackground(new Color(200, 220, 255));
-        totalPriceLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-        totalPriceLabel.setOpaque(true);
-        totalPriceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // 라벨 공통 스타일
+        Dimension labelSize = new Dimension(150, 40); // pricePanel의 너비와 동일
+        Color bgColor = new Color(200, 220, 255);
 
-        JLabel itemCountTitleLabel = new JLabel("담은 개수");
+        JLabel itemCountTitleLabel = new JLabel("담은 개수", SwingConstants.CENTER);
+        itemCountTitleLabel.setPreferredSize(labelSize);
+        itemCountTitleLabel.setMaximumSize(labelSize); itemCountTitleLabel.setMinimumSize(labelSize);
         itemCountTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        itemCountTitleLabel.setBackground(bgColor);
+        itemCountTitleLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        itemCountTitleLabel.setOpaque(true);
 
-        totalQuantityLabel = new JLabel(cart.getTotalQuantity() + "개");
-        totalQuantityLabel.setBackground(new Color(200, 220, 255));
-        totalQuantityLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-        totalQuantityLabel.setOpaque(true);
+        totalQuantityLabel.setPreferredSize(labelSize);
+        totalQuantityLabel.setMaximumSize(labelSize); totalQuantityLabel.setMinimumSize(labelSize);
         totalQuantityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        totalQuantityLabel.setBackground(Color.WHITE);
+        totalQuantityLabel.setOpaque(true);
+
+        JLabel priceTitleLabel = new JLabel("주문 금액", SwingConstants.CENTER);
+        priceTitleLabel.setPreferredSize(labelSize);
+        priceTitleLabel.setMaximumSize(labelSize);
+        priceTitleLabel.setMinimumSize(labelSize);
+        priceTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        priceTitleLabel.setBackground(bgColor);
+        priceTitleLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        priceTitleLabel.setOpaque(true);
+
+        totalPriceLabel.setPreferredSize(labelSize);
+        totalPriceLabel.setMaximumSize(labelSize); totalPriceLabel.setMinimumSize(labelSize);
+        totalPriceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        totalPriceLabel.setBackground(Color.WHITE);
+        totalPriceLabel.setOpaque(true);
+
+        JButton payButton = paymentButton();
+        payButton.setPreferredSize(new Dimension(100, 40));
+        payButton.setMaximumSize(new Dimension(100, 40));
+        payButton.setMinimumSize(new Dimension(100, 40));
+        payButton.setBackground(new Color(0, 102, 204));
+        payButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        payButton.setForeground(Color.WHITE);
+        payButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
 
         JPanel pricePanel = new JPanel();
         pricePanel.setLayout(new BoxLayout(pricePanel, BoxLayout.Y_AXIS));
-        pricePanel.setBackground(Color.WHITE);
+        pricePanel.setBackground(Color.GREEN);
+        pricePanel.setPreferredSize(new Dimension(100, 200)); // 기준 너비
+        pricePanel.setMaximumSize(new Dimension(100, Integer.MAX_VALUE));
+        pricePanel.setMinimumSize(new Dimension(100, 200));
 
-        JLabel priceTitleLabel = new JLabel("주문 금액");
-        priceTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton payButton = paymentButton();
-        payButton.setPreferredSize(new Dimension(60, 20));
-        payButton.setMaximumSize(new Dimension(60, 25));
-        payButton.setBackground(new Color(0, 102, 204));
-        payButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-        payButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        pricePanel.add(Box.createVerticalStrut(20));
         pricePanel.add(itemCountTitleLabel);
         pricePanel.add(totalQuantityLabel);
-        pricePanel.add(Box.createVerticalStrut(10));
+        //pricePanel.add(Box.createVerticalStrut(10));
         pricePanel.add(priceTitleLabel);
         pricePanel.add(totalPriceLabel);
-        pricePanel.add(Box.createVerticalGlue());
+        //pricePanel.add(Box.createVerticalStrut(10));
         pricePanel.add(payButton);
-        pricePanel.add(Box.createVerticalGlue());
+
         return pricePanel;
     }
 
