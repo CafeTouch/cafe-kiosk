@@ -317,7 +317,7 @@ public class MainFrame extends JFrame {
         ImageIcon shotIcon = new ImageIcon(shotImg);
 
         ImageIcon syrupRawIcon = new ImageIcon(getClass().getResource("/model/Images/syrup.jpg"));
-        Image syrupImg = syrupRawIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image syrupImg = syrupRawIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon syrupIcon = new ImageIcon(syrupImg);
         //중복 선택 가능하도록 ChoeckBox 사용
         JCheckBox shotBox = new JCheckBox("샷 추가", shotIcon);
