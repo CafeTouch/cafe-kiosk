@@ -2,19 +2,17 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;          // 🔄 getResource() 가 반환한 URL 처리를 위해 추가
+import java.net.URL; // 이미지 리소스를 불러오기 위해 URL 사용함
 import controller.AppController;
 
 public class PaymentOptionScreen extends JFrame {
 
-    private String selectedPaymentMethod = null;    // 어떤 결제수단 골랐는지 저장
-    private static int currentOrderNumber = 0;      // 주문 번호 (0~200 순환)
+    private String selectedPaymentMethod = null;    // 선택된 결제 수단을 저장함
+    private static int currentOrderNumber = 0;      // 주문 번호 (0~200까지 순환됨)
 
     private AppController controller;
 
-    // ──────────────────────────────────────────
-    // 1) 생성자
-    // ──────────────────────────────────────────
+    // 생성자 - 결제 수단 선택 화면 초기 구성
     public PaymentOptionScreen(AppController controller) {
         this.controller = controller;
 
@@ -22,19 +20,19 @@ public class PaymentOptionScreen extends JFrame {
         setSize(600, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(235, 244, 253));
+        getContentPane().setBackground(new Color(235, 244, 253)); // 연한 파란 배경 지정함
 
-        // 상단 제목
+        // 상단 안내 문구 구성함
         JLabel title = new JLabel("결제 수단을 선택해 주세요", SwingConstants.CENTER);
         title.setFont(new Font("맑은 고딕", Font.BOLD, 36));
         add(title, BorderLayout.NORTH);
 
-        // 버튼 영역
+        // 결제 버튼들이 들어갈 영역 생성함
         JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 20, 20));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         buttonPanel.setBackground(new Color(242, 242, 246));
 
-        // 텍스트 + 파일명
+        // 버튼에 표시될 텍스트와 이미지 파일명을 정의함
         String[][] options = {
             {"카드/삼성페이", "creditcard.png"},
             {"카카오페이",    "kakaopay.png"},
@@ -42,24 +40,24 @@ public class PaymentOptionScreen extends JFrame {
             {"애플페이",      "apple_pay.png"},
         };
 
+        // 각 결제 수단에 대해 버튼 생성 및 패널에 추가함
         for (String[] opt : options) {
-            buttonPanel.add(createRoundedButton(opt[0], opt[1]));  // 🔄
+            buttonPanel.add(createRoundedButton(opt[0], opt[1]));
         }
 
         add(buttonPanel, BorderLayout.CENTER);
 
-        // 하단 마르퀴
+        // 하단 안내 문구 마르퀴 패널 추가함
         add(new MarqueePanel("현금 결제는 직원에게 문의해 주세요", 10), BorderLayout.SOUTH);
 
-        setLocationRelativeTo(null);
-        setVisible(true);
+        setLocationRelativeTo(null); // 창을 화면 중앙에 위치시킴
+        setVisible(true);            // 창을 보이게 설정함
     }
 
-    // ──────────────────────────────────────────
-    // 2) 둥근 버튼 생성 (이미지 로딩 방식 변경)
-    // ──────────────────────────────────────────
-    private JButton createRoundedButton(String text, String fileName) { // 🔄 파라미터명 변경
+    // 둥근 스타일의 버튼을 생성하는 메서드
+    private JButton createRoundedButton(String text, String fileName) {
         JButton btn = new JButton(text) {
+            // 배경을 둥글게 그리는 설정
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setColor(getBackground());
@@ -68,6 +66,8 @@ public class PaymentOptionScreen extends JFrame {
                 g2.dispose();
                 super.paintComponent(g);
             }
+
+            // 테두리를 둥글게 그리는 설정
             @Override protected void paintBorder(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setColor(new Color(100, 130, 180));
@@ -77,6 +77,7 @@ public class PaymentOptionScreen extends JFrame {
             }
         };
 
+        // 버튼 스타일 지정함
         btn.setFont(new Font("맑은 고딕", Font.BOLD, 18));
         btn.setPreferredSize(new Dimension(180, 130));
         btn.setBackground(new Color(184, 216, 249));
@@ -86,7 +87,7 @@ public class PaymentOptionScreen extends JFrame {
         btn.setBorderPainted(false);
         btn.setOpaque(false);
 
-        /* 🔄  (중요) 클래스패스에서 이미지 읽어오기  */
+        // 이미지 리소스를 클래스패스를 통해 불러와 버튼에 아이콘으로 설정함
         URL imgURL = getClass().getResource("/model/Images/" + fileName);
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
@@ -95,9 +96,10 @@ public class PaymentOptionScreen extends JFrame {
             btn.setHorizontalTextPosition(SwingConstants.CENTER);
             btn.setVerticalTextPosition(SwingConstants.BOTTOM);
         } else {
-            System.err.println("이미지 파일을 찾을 수 없습니다: " + fileName);
+            System.err.println("이미지를 찾을 수 없음: " + fileName);
         }
 
+        // 버튼 클릭 시 결제 수단 저장 및 다음 화면으로 전환함
         btn.addActionListener(e -> {
             selectedPaymentMethod = text;
             openReceiptOptionScreen();
@@ -106,9 +108,7 @@ public class PaymentOptionScreen extends JFrame {
         return btn;
     }
 
-    // ──────────────────────────────────────────
-    // 3) 출력 방식 선택 화면 (눈송이 이미지 경로 수정)
-    // ──────────────────────────────────────────
+    // 영수증 출력 방식 선택 화면 구성함
     private void openReceiptOptionScreen() {
         JFrame receiptFrame = new JFrame("출력 방식 선택");
         receiptFrame.setSize(600, 800);
@@ -116,16 +116,18 @@ public class PaymentOptionScreen extends JFrame {
         receiptFrame.setLayout(new BorderLayout());
         receiptFrame.getContentPane().setBackground(new Color(235, 244, 253));
 
+        // 상단 감사 문구 설정함
         JLabel thanksLabel = new JLabel("주문해 주셔서 감사합니다!", SwingConstants.CENTER);
         thanksLabel.setFont(new Font("맑은 고딕", Font.BOLD, 26));
         thanksLabel.setForeground(new Color(60, 60, 80));
         receiptFrame.add(thanksLabel, BorderLayout.NORTH);
 
+        // 중앙 안내 및 이미지 구성함
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setBackground(new Color(235, 244, 253));
 
-        /* 🔄 클래스패스 자원으로 교체 */
+        // 눈송이 이미지 삽입함
         URL imgURL = getClass().getResource("/model/Images/sookmyung_noonsong.png");
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
@@ -136,6 +138,7 @@ public class PaymentOptionScreen extends JFrame {
             center.add(iconLabel);
         }
 
+        // 출력 방식 안내 문구
         JLabel msg = new JLabel("출력 방식을 선택하세요", SwingConstants.CENTER);
         msg.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
         msg.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -143,13 +146,15 @@ public class PaymentOptionScreen extends JFrame {
         center.add(msg);
         receiptFrame.add(center, BorderLayout.CENTER);
 
-        // 버튼 두 개
+        // 하단 버튼 영역 설정함
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 40));
         btnPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         btnPanel.setBackground(new Color(242, 242, 246));
 
+        // 두 개의 버튼 구성함
         JButton bothBtn = new JButton("영수증 출력");
         JButton orderOnlyBtn = new JButton("주문번호만 인쇄");
+
         for (JButton b : new JButton[]{bothBtn, orderOnlyBtn}) {
             b.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             b.setPreferredSize(new Dimension(200, 60));
@@ -157,10 +162,12 @@ public class PaymentOptionScreen extends JFrame {
             b.setForeground(Color.BLACK);
         }
 
+        // 각 버튼 클릭 시 동작 지정함
         bothBtn.addActionListener(e -> {
             showConfirmation(selectedPaymentMethod, "영수증 출력");
             receiptFrame.dispose();
         });
+
         orderOnlyBtn.addActionListener(e -> {
             showConfirmation(selectedPaymentMethod, "주문번호만 인쇄");
             receiptFrame.dispose();
@@ -172,12 +179,10 @@ public class PaymentOptionScreen extends JFrame {
 
         receiptFrame.setLocationRelativeTo(null);
         receiptFrame.setVisible(true);
-        dispose();
+        dispose(); // 이전 창 닫기
     }
 
-    // ──────────────────────────────────────────
-    // 4) 결제 완료 팝업
-    // ──────────────────────────────────────────
+    // 결제 완료 안내창 출력 및 다음 동작 수행함
     private void showConfirmation(String paymentMethod, String receiptOption) {
         int orderNumber = currentOrderNumber;
         currentOrderNumber = (currentOrderNumber + 1) % 201;
@@ -186,22 +191,23 @@ public class PaymentOptionScreen extends JFrame {
                    + paymentMethod + "(으)로 결제되었습니다.\n"
                    + receiptOption + "합니다.";
         JOptionPane.showMessageDialog(null, msg);
-        controller.newScreen();   // 처음 화면으로 복귀
+        controller.newScreen(); // 다시 초기 화면으로 이동함
     }
 
-    // ──────────────────────────────────────────
-    // 5) 하단 마르퀴 패널 (변경 없음)
-    // ──────────────────────────────────────────
+    // 하단 텍스트가 흘러가는 마르퀴 패널 정의함
     class MarqueePanel extends JPanel {
         private final String text;
         private int x;
         private final Timer timer;
+
         public MarqueePanel(String text, int speed) {
             this.text = text;
             x = getWidth();
             setPreferredSize(new Dimension(600, 40));
             setBackground(new Color(215, 230, 245));
             setFont(new Font("맑은 고딕", Font.BOLD, 20));
+
+            // 텍스트가 왼쪽으로 이동하는 애니메이션 구성함
             timer = new Timer(speed, e -> {
                 x -= 2;
                 if (x + getFontMetrics(getFont()).stringWidth(text) < 0) x = getWidth();
@@ -209,6 +215,7 @@ public class PaymentOptionScreen extends JFrame {
             });
             timer.start();
         }
+
         @Override protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(Color.DARK_GRAY);
