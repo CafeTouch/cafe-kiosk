@@ -2,10 +2,8 @@ package screen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 import controller.AppController;
-import model.*;
 
 public class FirstScreen {
 	private AppController controller;
@@ -33,6 +31,8 @@ public class FirstScreen {
 		// 버튼 사이즈
 		int BW = screenWidth/2;
 		int BH = screenHeight/6;
+		// 버튼 위치
+		int BX = screenWidth/2-BW/2;
 		
 		// 버튼에 삽입할 이미지
 		ImageIcon hereIcon = new ImageIcon(getClass().getResource("/model/Images/noun-store.png"));
@@ -53,9 +53,9 @@ public class FirstScreen {
 		here.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		togo.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
-		here.setBounds(screenWidth/2-BW/2, (screenHeight/2 - BH*2)*3, 
+		here.setBounds(BX, (screenHeight/2 - BH*2)*3,
 			BW, BH);
-		togo.setBounds(screenWidth/2-BW/2, (screenHeight/2 - BH)*2, 
+		togo.setBounds(BX, (screenHeight/2 - BH)*2,
 			BW, BH);
 		
 		f.add(here);
@@ -71,13 +71,12 @@ public class FirstScreen {
 		Image newNS = NSIcon.getImage().getScaledInstance(BH,screenWidth/4, Image.SCALE_FAST);
 		ImageIcon resizedNS = new ImageIcon(newNS);
 		JLabel lb = new JLabel(resizedNS);
-		lb.setBounds(350,screenHeight/6, BH, screenWidth/4);
+		lb.setBounds(BX + 80,screenHeight/3 - 50, BH, screenWidth/4);
 		f.add(lb);
 		
 		// 눈송카페 글씨 삽입
 		JLabel cafe = new JLabel("눈송 카페");
-		cafe.setBounds(screenWidth/2 - 100, screenHeight/6, 500, 100);
-		//cafe.setHorizontalAlignment(JLabel.CENTER);
+		cafe.setBounds(BX + 100, screenHeight/6, 500, 100);
 		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		f.add(cafe);
 
