@@ -27,6 +27,15 @@ public class Cart {
         }
         return totalPrice;
     }
+
+    public int getTotalQuantity() { // 총 금액
+        int totalQtt = 0;
+        for (CartItem item : items) {
+            totalQtt += item.getQuantity();
+        }
+        return totalQtt;
+    }
+
     public void addOrUpdateItem(CartItem newItem) {
         for (CartItem item : items) {
             if (item.equals(newItem)) {
