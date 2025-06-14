@@ -30,11 +30,12 @@ public class CheckPurchase extends JFrame {
         add(checkPanel, BorderLayout.CENTER);
 
         // 결제하기 버튼
-        Color btnColor = new Color(129, 175, 213);
+        Color btnColor = new Color(0,102,204);
 
         JButton purchase = new JButton("결제하기");
         purchase.setBackground(btnColor);
-        purchase.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        purchase.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+        purchase.setForeground(Color.WHITE);
         add(purchase, BorderLayout.SOUTH);
 
         // 결제 버튼 클릭 이벤트 -> 클릭하면 키패드로 넘어감
