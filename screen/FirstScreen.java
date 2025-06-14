@@ -76,8 +76,8 @@ public class FirstScreen {
 		
 		// 눈송카페 글씨 삽입
 		JLabel cafe = new JLabel("눈송 카페");
-		cafe.setBounds(BX + 100, screenHeight/6, 500, 100);
-		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		cafe.setBounds(BX + 80, screenHeight/6 - 60, 500, 150);
+		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		f.add(cafe);
 
 		// 파이차트 새 창에서 띄우고 FirstScreen보다 앞에 띄움
