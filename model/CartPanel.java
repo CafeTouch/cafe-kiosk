@@ -10,6 +10,7 @@ package model;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import controller.AppController;
 
 
 // 추후 메인프레임 하단 (SOUTH) 영역에 붙여질 예정
