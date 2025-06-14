@@ -1,3 +1,5 @@
+/*미리 메뉴 항목들 등록해 놔서 - 사용자가 "커피" 카테고리 클릭하면-
+    getMenuItems(Category.COFFEE) 호출- 커피 항목만 filtering 되어 출력*/
 package model;
 import java.util.ArrayList;
 import java.util.List;
