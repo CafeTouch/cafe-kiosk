@@ -421,15 +421,17 @@ public class MainFrame extends JFrame {
         optionDialog.add(extraPanel);
         optionDialog.add(Box.createVerticalStrut(10));
         optionDialog.add(confirmBtn);
-        //옵션 선택하라고 강조하기 위해 옵션 선택 문구 한 번 깜빡이는 thread 기능
+
+        // 옵션 선택하세요 문구 빨간색으로 깜빡이는 thread 기능
         new Thread(() -> {
             try {
+                for (int i = 0; i < 10; i++) {
+                    Color newColor = (i % 2 == 0) ? Color.RED : Color.BLACK;
 
-                SwingUtilities.invokeLater(() -> optionLabel.setVisible(false));
-                Thread.sleep(300);
-                SwingUtilities.invokeLater(() -> optionLabel.setVisible(true));
-                Thread.sleep(300);
+                    SwingUtilities.invokeLater(() -> optionLabel.setForeground(newColor));
 
+                    Thread.sleep(300);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
