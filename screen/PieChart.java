@@ -35,14 +35,14 @@ public class PieChart extends JFrame {
 
     // 음료 데이터 배열
     private Drink[] drinks = {
-            new Drink("아메리카노", 30, new Color(0, 122, 255)),
-            new Drink("카푸치노", 10, new Color(0, 60, 133)),
-            new Drink("카페라떼", 15, new Color(0, 31, 71)),
-            new Drink("카페모카", 5, new Color(0, 15, 37)),
-            new Drink("녹차 라떼", 7, new Color(79, 161, 200)),
-            new Drink("요거트 스무디", 3, new Color(48, 122, 159)),
-            new Drink("미숫가루", 2, new Color(4, 77, 112)),
-            new Drink("아이스티", 8, new Color(108, 140, 158)),
+            new Drink("아메리카노", 30, new Color(99, 177, 255)),
+            new Drink("카푸치노", 10, new Color(184, 79, 200)),
+            new Drink("카페라떼", 15, new Color(0, 60, 133)),
+            new Drink("카페모카", 5, new Color(59, 23, 103)),
+            new Drink("녹차 라떼", 7, new Color(106, 152, 57)),
+            new Drink("요거트 스무디", 3, new Color(250, 244, 173)),
+            new Drink("미숫가루", 2, new Color(140, 107, 66)),
+            new Drink("아이스티", 8, new Color(255, 255, 255)),
     };
 
     private class ChartPanel extends JPanel {
