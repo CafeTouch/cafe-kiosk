@@ -78,13 +78,14 @@ public class MemberScreen extends JFrame {
                     }
                 }
 
-                //적립사용 내역 저장
+                
                 CustomerManager.saveReadable();
 
                 controller.showPaymentScreen();
                 dispose();
             }
         });
+        CustomerManager.saveReadable();
 
         add(confirmBtn, BorderLayout.SOUTH);
         setVisible(true);
