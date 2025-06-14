@@ -30,7 +30,7 @@ public class CheckPurchase extends JFrame {
         add(checkPanel, BorderLayout.CENTER);
 
         // 결제하기 버튼
-        Color btnColor = new Color(184,216,249);
+        Color btnColor = new Color(129, 175, 213);
 
         JButton purchase = new JButton("결제하기");
         purchase.setBackground(btnColor);
