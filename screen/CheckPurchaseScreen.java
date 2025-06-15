@@ -91,13 +91,13 @@ public class CheckPurchaseScreen extends JPanel {
             optPane.setBackground(labelColor2);
 
             // 옵션 별 추가할 라벨들
-            String hotText = (item.getHot() == 0) ? "HOT" : "ICE";
+            String hotText = (item.getHot() == 1) ? "HOT" : "ICE";
             JLabel hotLabel = new JLabel("    "+ hotText);
-            String shotText = (item.getExtraShot() == 0) ? " | 샷 추가 |" : " |";
+            String shotText = (item.getExtraShot() == 1) ? " | 샷 추가 |" : " |";
             JLabel shotLabel = new JLabel(" "+ shotText);
-            String sweetText = (item.getSweetener() == 0) ? "시럽 추가 |" : "";
+            String sweetText = (item.getSweetener() == 1) ? "시럽 추가 |" : "";
             JLabel sweetLabel = new JLabel(" "+ sweetText);
-            String dispoText = (item.getDisposables() == 0) ? " 일회용품 사용" : "";
+            String dispoText = (item.getDisposables() == 1) ? " 일회용품 사용" : "";
             JLabel dispoLabel = new JLabel(" "+ dispoText);
 
             // 라벨 커스텀
