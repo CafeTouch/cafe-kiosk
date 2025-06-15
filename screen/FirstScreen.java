@@ -79,6 +79,13 @@ public class FirstScreen {
 		cafe.setBounds(BX + 80, screenHeight/6 - 60, 500, 150);
 		cafe.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		f.add(cafe);
+		
+		// 현금결제 글씨 하단에 삽입
+		JLabel cash = new JLabel("현금 결제는 직원에게 문의해주세요!");
+		cash.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		cash.setForeground(Color.RED);
+		cash.setBounds(BX - 14 , screenHeight - 100, 600, 30);
+		f.add(cash);
 
 		// 파이차트 새 창에서 띄우고 FirstScreen보다 앞에 띄움
 		PieChart pieChart = new PieChart();
